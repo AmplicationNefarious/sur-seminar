@@ -25,6 +25,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { ApartmentFindManyArgs } from "../../apartment/base/ApartmentFindManyArgs";
+import { Apartment } from "../../apartment/base/Apartment";
 import { UserService } from "../user.service";
 
 @graphql.Resolver(() => User)
@@ -134,5 +136,25 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Apartment])
+  @nestAccessControl.UseRoles({
+    resource: "Apartment",
+    action: "read",
+    possession: "any",
+  })
+  async apartments(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: ApartmentFindManyArgs
+  ): Promise<Apartment[]> {
+    const results = await this.service.findApartments(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }
