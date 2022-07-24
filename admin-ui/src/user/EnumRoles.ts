@@ -1,3 +1,5 @@
 export enum EnumRoles {
-  Renter = "renter",
+  User = "User",
+  Custumer = "custumer",
+  Renter = "Renter",
 }
