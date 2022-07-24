@@ -16,7 +16,8 @@
     "docker:db": "docker-compose -f docker-compose.db.yml up -d",
     "docker:build": "docker build .",
     "compose:up": "docker-compose up -d",
-    "compose:down": "docker-compose down --volumes"
+    "compose:down": "docker-compose down --volumes",
+    "postinstall": "npm ci --prefix web && npm ci --prefix admin-ui && npm ci --prefix server"
   },
   "dependencies": {
     "@nestjs/common": "8.2.3",
