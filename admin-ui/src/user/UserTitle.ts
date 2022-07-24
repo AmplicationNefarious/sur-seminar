@@ -1,7 +1,7 @@
 import { User as TUser } from "../api/user/User";
 
-export const USER_TITLE_FIELD = "username";
+export const USER_TITLE_FIELD = "nameSurname";
 
 export const UserTitle = (record: TUser): string => {
-  return record.username || record.id;
+  return record.nameSurname || record.id;
 };
