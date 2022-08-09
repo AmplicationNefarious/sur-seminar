@@ -19,7 +19,8 @@ import {
   IsNumber,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { Owner } from "../../owner/base/Owner";
+
+import { User } from "../../user/base/User";
 import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()
 class Apartment {
@@ -60,12 +61,12 @@ class Apartment {
 
   @ApiProperty({
     required: false,
-    type: () => Owner,
+    type: () => User,
   })
   @ValidateNested()
-  @Type(() => Owner)
+  @Type(() => User)
   @IsOptional()
-  idOwner?: Owner | null;
+  id_user?: User | null;
 
   @ApiProperty({
     required: true,

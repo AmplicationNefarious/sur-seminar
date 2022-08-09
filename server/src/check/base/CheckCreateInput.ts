@@ -42,6 +42,7 @@ class CheckCreateInput {
   @Field(() => Boolean, {
     nullable: true,
   })
-  payed?: boolean | null;
+  paid?: boolean | null;
+
 }
 export { CheckCreateInput };

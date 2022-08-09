@@ -12,7 +12,7 @@ import {
   SelectArrayInput,
 } from "react-admin";
 
-import { OwnerTitle } from "../owner/OwnerTitle";
+import { UserTitle } from "../user/UserTitle";
 import { ReservationTitle } from "../reservation/ReservationTitle";
 
 export const ApartmentCreate = (props: CreateProps): React.ReactElement => {
@@ -21,8 +21,8 @@ export const ApartmentCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="Address" source="address" />
         <TextInput label="Description" multiline source="description" />
-        <ReferenceInput source="owner.id" reference="Owner" label="ID_Owner">
-          <SelectInput optionText={OwnerTitle} />
+        <ReferenceInput source="user.id" reference="User" label="ID_User">
+          <SelectInput optionText={UserTitle} />
         </ReferenceInput>
         <TextInput label="Name" source="name" />
         <NumberInput label="PriceANight" source="price" />

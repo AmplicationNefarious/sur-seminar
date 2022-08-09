@@ -27,7 +27,7 @@ import { ApartmentFindUniqueArgs } from "./ApartmentFindUniqueArgs";
 import { Apartment } from "./Apartment";
 import { ReservationFindManyArgs } from "../../reservation/base/ReservationFindManyArgs";
 import { Reservation } from "../../reservation/base/Reservation";
-import { Owner } from "../../owner/base/Owner";
+import { User } from "../../user/base/User";
 import { ApartmentService } from "../apartment.service";
 
 @graphql.Resolver(() => Apartment)
@@ -102,9 +102,10 @@ export class ApartmentResolverBase {
       data: {
         ...args.data,
 
-        idOwner: args.data.idOwner
+
+        id_user: args.data.id_user
           ? {
-              connect: args.data.idOwner,
+              connect: args.data.id_user,
             }
           : undefined,
       },
@@ -127,9 +128,11 @@ export class ApartmentResolverBase {
         data: {
           ...args.data,
 
-          idOwner: args.data.idOwner
+
+          id_user: args.data.id_user
             ? {
-                connect: args.data.idOwner,
+                connect: args.data.id_user,
+
               }
             : undefined,
         },
@@ -186,14 +189,14 @@ export class ApartmentResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Owner, { nullable: true })
+  @graphql.ResolveField(() => User, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Owner",
+    resource: "User",
     action: "read",
     possession: "any",
   })
-  async idOwner(@graphql.Parent() parent: Apartment): Promise<Owner | null> {
-    const result = await this.service.getIdOwner(parent.id);
+  async idUser(@graphql.Parent() parent: Apartment): Promise<User | null> {
+    const result = await this.service.getIdUser(parent.id);
 
     if (!result) {
       return null;

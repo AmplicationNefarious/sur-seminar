@@ -6,5 +6,9 @@ export type CheckWhereInput = {
   amount?: FloatNullableFilter;
   id?: StringFilter;
   idReservation?: StringFilter;
+<<<<<<< HEAD
+  paid?: BooleanNullableFilter;
+=======
   payed?: BooleanNullableFilter;
+>>>>>>> main
 };

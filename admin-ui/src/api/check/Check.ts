@@ -3,6 +3,6 @@ export type Check = {
   createdAt: Date;
   id: string;
   idReservation: string;
-  payed: boolean | null;
+  paid: boolean | null;
   updatedAt: Date;
 };

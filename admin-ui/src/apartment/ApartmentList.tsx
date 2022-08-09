@@ -8,7 +8,8 @@ import {
   ReferenceField,
 } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { OWNER_TITLE_FIELD } from "../owner/OwnerTitle";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
+
 
 export const ApartmentList = (props: ListProps): React.ReactElement => {
   return (
@@ -24,8 +25,8 @@ export const ApartmentList = (props: ListProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="Description" source="description" />
         <TextField label="ID" source="id" />
-        <ReferenceField label="ID_Owner" source="owner.id" reference="Owner">
-          <TextField source={OWNER_TITLE_FIELD} />
+        <ReferenceField label="ID_User" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Name" source="name" />
         <TextField label="PriceANight" source="price" />

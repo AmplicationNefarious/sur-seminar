@@ -5,7 +5,7 @@ export type ApartmentOrderByInput = {
   createdAt?: SortOrder;
   description?: SortOrder;
   id?: SortOrder;
-  idOwnerId?: SortOrder;
+  id_userId?: SortOrder;
   name?: SortOrder;
   price?: SortOrder;
   updatedAt?: SortOrder;

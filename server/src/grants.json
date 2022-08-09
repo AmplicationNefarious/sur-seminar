@@ -31,36 +31,6 @@
   },
   {
     "role": "renter",
-    "resource": "Owner",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "renter",
-    "resource": "Owner",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "renter",
-    "resource": "Owner",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "renter",
-    "resource": "Owner",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "renter",
-    "resource": "Owner",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "renter",
     "resource": "Apartment",
     "action": "read:own",
     "attributes": "*"

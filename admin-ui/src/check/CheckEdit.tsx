@@ -14,7 +14,7 @@ export const CheckEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <NumberInput label="Amount" source="amount" />
         <TextInput label="ID_Reservation" source="idReservation" />
-        <BooleanInput label="Payed" source="payed" />
+        <BooleanInput label="Paid" source="paid" />
       </SimpleForm>
     </Edit>
   );

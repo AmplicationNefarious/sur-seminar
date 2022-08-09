@@ -5,6 +5,10 @@ export type CheckOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
   idReservation?: SortOrder;
+<<<<<<< HEAD
+  paid?: SortOrder;
+=======
   payed?: SortOrder;
+>>>>>>> main
   updatedAt?: SortOrder;
 };

@@ -61,7 +61,7 @@ class ApartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  idOwnerId?: SortOrder;
+  id_userId?: SortOrder;
 
   @ApiProperty({
     required: false,

@@ -65,7 +65,7 @@ class Check {
   @Field(() => Boolean, {
     nullable: true,
   })
-  payed!: boolean | null;
+  paid!: boolean | null;
 
   @ApiProperty({
     required: true,

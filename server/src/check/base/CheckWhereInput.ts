@@ -60,6 +60,6 @@ class CheckWhereInput {
   @Field(() => BooleanNullableFilter, {
     nullable: true,
   })
-  payed?: BooleanNullableFilter;
+  paid?: BooleanNullableFilter;
 }
 export { CheckWhereInput };

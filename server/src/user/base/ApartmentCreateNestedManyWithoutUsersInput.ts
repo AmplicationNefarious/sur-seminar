@@ -10,41 +10,17 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsOptional, IsString, IsBoolean } from "class-validator";
 @InputType()
-class CheckUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
-  @IsNumber()
-  @IsOptional()
-  @Field(() => Number, {
+class ApartmentCreateNestedManyWithoutUsersInput {
+  @Field(() => [ApartmentWhereUniqueInput], {
     nullable: true,
   })
-  amount?: number | null;
-
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => [ApartmentWhereUniqueInput],
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  idReservation?: string;
-
-  @ApiProperty({
-    required: false,
-    type: Boolean,
-  })
-  @IsBoolean()
-  @IsOptional()
-  @Field(() => Boolean, {
-    nullable: true,
-  })
-  paid?: boolean | null;
+  connect?: Array<ApartmentWhereUniqueInput>;
 }
-export { CheckUpdateInput };
+export { ApartmentCreateNestedManyWithoutUsersInput };

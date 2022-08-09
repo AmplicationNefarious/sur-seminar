@@ -61,7 +61,8 @@ class CheckOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  payed?: SortOrder;
+  paid?: SortOrder;
+
 
   @ApiProperty({
     required: false,

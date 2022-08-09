@@ -8,23 +8,17 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  password  String
-  roles     String[]
-  updatedAt DateTime @updatedAt
-  username  String   @unique
-}
 
-model Owner {
   apartments  Apartment[]
   createdAt   DateTime    @default(now())
-  email       String      @unique
+  email       String?
   id          String      @id @default(cuid())
   nameSurname String?
   password    String
   phoneNumber String?
+  roles       String[]
   updatedAt   DateTime    @updatedAt
+  username    String      @unique
 }
 
 model Apartment {
@@ -32,8 +26,8 @@ model Apartment {
   createdAt    DateTime      @default(now())
   description  String?
   id           String        @id @default(cuid())
-  idOwner      Owner?        @relation(fields: [idOwnerId], references: [id])
-  idOwnerId    String?
+  id_user      User?         @relation(fields: [id_userId], references: [id])
+  id_userId    String?
   name         String
   price        Float
   reservations Reservation[]
@@ -56,6 +50,6 @@ model Check {
   createdAt     DateTime @default(now())
   id            String   @id @default(cuid())
   idReservation String
-  payed         Boolean?
+  paid          Boolean?
   updatedAt     DateTime @updatedAt
 }

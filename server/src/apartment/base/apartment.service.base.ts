@@ -10,7 +10,8 @@ https://docs.amplication.com/docs/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "nestjs-prisma";
-import { Prisma, Apartment, Reservation, Owner } from "@prisma/client";
+import { Prisma, Apartment, Reservation, User } from "@prisma/client";
+
 
 export class ApartmentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -58,11 +59,12 @@ export class ApartmentServiceBase {
       .reservations(args);
   }
 
-  async getIdOwner(parentId: string): Promise<Owner | null> {
+
+  async getIdUser(parentId: string): Promise<User | null> {
     return this.prisma.apartment
       .findUnique({
         where: { id: parentId },
       })
-      .idOwner();
+      .id_user();
   }
 }

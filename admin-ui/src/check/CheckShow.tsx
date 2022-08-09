@@ -16,7 +16,7 @@ export const CheckShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
         <TextField label="ID_Reservation" source="idReservation" />
-        <BooleanField label="Payed" source="payed" />
+        <BooleanField label="Paid" source="paid" />
         <DateField source="updatedAt" label="Updated At" />
       </SimpleShowLayout>
     </Show>

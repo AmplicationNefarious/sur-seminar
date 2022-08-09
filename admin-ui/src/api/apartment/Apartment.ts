@@ -1,4 +1,5 @@
-import { Owner } from "../owner/Owner";
+
+import { User } from "../user/User";
 import { Reservation } from "../reservation/Reservation";
 
 export type Apartment = {
@@ -6,7 +7,7 @@ export type Apartment = {
   createdAt: Date;
   description: string | null;
   id: string;
-  idOwner?: Owner | null;
+  id_user?: User | null;
   name: string;
   price: number;
   reservations?: Array<Reservation>;
