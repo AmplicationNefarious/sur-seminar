@@ -14,8 +14,12 @@ import { ApiProperty } from "@nestjs/swagger";
 <<<<<<< HEAD
 import { IsDate, IsString, IsOptional } from "class-validator";
 =======
+<<<<<<< HEAD
+import { IsDate, IsString, IsOptional } from "class-validator";
+=======
 import { Apartment } from "../../apartment/base/Apartment";
 import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
+>>>>>>> main
 >>>>>>> main
 import { Type } from "class-transformer";
 @ObjectType()
@@ -47,6 +51,14 @@ class User {
     nullable: true,
   })
   email!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
 
   @ApiProperty({
     required: true,
