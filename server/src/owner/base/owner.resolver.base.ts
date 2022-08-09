@@ -19,33 +19,32 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateApartmentArgs } from "./CreateApartmentArgs";
-import { UpdateApartmentArgs } from "./UpdateApartmentArgs";
-import { DeleteApartmentArgs } from "./DeleteApartmentArgs";
-import { ApartmentFindManyArgs } from "./ApartmentFindManyArgs";
-import { ApartmentFindUniqueArgs } from "./ApartmentFindUniqueArgs";
-import { Apartment } from "./Apartment";
-import { ReservationFindManyArgs } from "../../reservation/base/ReservationFindManyArgs";
-import { Reservation } from "../../reservation/base/Reservation";
-import { User } from "../../user/base/User";
-import { ApartmentService } from "../apartment.service";
+import { CreateOwnerArgs } from "./CreateOwnerArgs";
+import { UpdateOwnerArgs } from "./UpdateOwnerArgs";
+import { DeleteOwnerArgs } from "./DeleteOwnerArgs";
+import { OwnerFindManyArgs } from "./OwnerFindManyArgs";
+import { OwnerFindUniqueArgs } from "./OwnerFindUniqueArgs";
+import { Owner } from "./Owner";
+import { ApartmentFindManyArgs } from "../../apartment/base/ApartmentFindManyArgs";
+import { Apartment } from "../../apartment/base/Apartment";
+import { OwnerService } from "../owner.service";
 
-@graphql.Resolver(() => Apartment)
+@graphql.Resolver(() => Owner)
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-export class ApartmentResolverBase {
+export class OwnerResolverBase {
   constructor(
-    protected readonly service: ApartmentService,
+    protected readonly service: OwnerService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "Apartment",
+    resource: "Owner",
     action: "read",
     possession: "any",
   })
-  async _apartmentsMeta(
-    @graphql.Args() args: ApartmentFindManyArgs
+  async _ownersMeta(
+    @graphql.Args() args: OwnerFindManyArgs
   ): Promise<MetaQueryPayload> {
     const results = await this.service.count({
       ...args,
@@ -58,28 +57,26 @@ export class ApartmentResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [Apartment])
+  @graphql.Query(() => [Owner])
   @nestAccessControl.UseRoles({
-    resource: "Apartment",
+    resource: "Owner",
     action: "read",
     possession: "any",
   })
-  async apartments(
-    @graphql.Args() args: ApartmentFindManyArgs
-  ): Promise<Apartment[]> {
+  async owners(@graphql.Args() args: OwnerFindManyArgs): Promise<Owner[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => Apartment, { nullable: true })
+  @graphql.Query(() => Owner, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Apartment",
+    resource: "Owner",
     action: "read",
     possession: "own",
   })
-  async apartment(
-    @graphql.Args() args: ApartmentFindUniqueArgs
-  ): Promise<Apartment | null> {
+  async owner(
+    @graphql.Args() args: OwnerFindUniqueArgs
+  ): Promise<Owner | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -88,54 +85,33 @@ export class ApartmentResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Apartment)
+  @graphql.Mutation(() => Owner)
   @nestAccessControl.UseRoles({
-    resource: "Apartment",
+    resource: "Owner",
     action: "create",
     possession: "any",
   })
-  async createApartment(
-    @graphql.Args() args: CreateApartmentArgs
-  ): Promise<Apartment> {
+  async createOwner(@graphql.Args() args: CreateOwnerArgs): Promise<Owner> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-
-        id_user: args.data.id_user
-          ? {
-              connect: args.data.id_user,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Apartment)
+  @graphql.Mutation(() => Owner)
   @nestAccessControl.UseRoles({
-    resource: "Apartment",
+    resource: "Owner",
     action: "update",
     possession: "any",
   })
-  async updateApartment(
-    @graphql.Args() args: UpdateApartmentArgs
-  ): Promise<Apartment | null> {
+  async updateOwner(
+    @graphql.Args() args: UpdateOwnerArgs
+  ): Promise<Owner | null> {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-
-          id_user: args.data.id_user
-            ? {
-                connect: args.data.id_user,
-
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -147,15 +123,15 @@ export class ApartmentResolverBase {
     }
   }
 
-  @graphql.Mutation(() => Apartment)
+  @graphql.Mutation(() => Owner)
   @nestAccessControl.UseRoles({
-    resource: "Apartment",
+    resource: "Owner",
     action: "delete",
     possession: "any",
   })
-  async deleteApartment(
-    @graphql.Args() args: DeleteApartmentArgs
-  ): Promise<Apartment | null> {
+  async deleteOwner(
+    @graphql.Args() args: DeleteOwnerArgs
+  ): Promise<Owner | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
@@ -169,38 +145,22 @@ export class ApartmentResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Reservation])
+  @graphql.ResolveField(() => [Apartment])
   @nestAccessControl.UseRoles({
-    resource: "Reservation",
+    resource: "Apartment",
     action: "read",
     possession: "any",
   })
-  async reservations(
-    @graphql.Parent() parent: Apartment,
-    @graphql.Args() args: ReservationFindManyArgs
-  ): Promise<Reservation[]> {
-    const results = await this.service.findReservations(parent.id, args);
+  async apartments(
+    @graphql.Parent() parent: Owner,
+    @graphql.Args() args: ApartmentFindManyArgs
+  ): Promise<Apartment[]> {
+    const results = await this.service.findApartments(parent.id, args);
 
     if (!results) {
       return [];
     }
 
     return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => User, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
-  })
-  async idUser(@graphql.Parent() parent: Apartment): Promise<User | null> {
-    const result = await this.service.getIdUser(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

@@ -10,6 +10,7 @@ import {
 import Pagination from "../Components/Pagination";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
 
+
 export const ApartmentList = (props: ListProps): React.ReactElement => {
   return (
     <List

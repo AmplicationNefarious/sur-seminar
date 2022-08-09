@@ -11,26 +11,19 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsDate,
-  IsOptional,
-  ValidateNested,
-  IsNumber,
-} from "class-validator";
+import { Apartment } from "../../apartment/base/Apartment";
+import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
-
-import { User } from "../../user/base/User";
-import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()
-class Apartment {
+class Owner {
   @ApiProperty({
-    required: true,
-    type: String,
+    required: false,
+    type: () => [Apartment],
   })
-  @IsString()
-  @Field(() => String)
-  address!: string;
+  @ValidateNested()
+  @Type(() => Apartment)
+  @IsOptional()
+  apartments?: Array<Apartment>;
 
   @ApiProperty({
     required: true,
@@ -41,15 +34,12 @@ class Apartment {
   createdAt!: Date;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: String,
   })
   @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description!: string | null;
+  @Field(() => String)
+  email!: string;
 
   @ApiProperty({
     required: true,
@@ -61,12 +51,14 @@ class Apartment {
 
   @ApiProperty({
     required: false,
-    type: () => User,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => User)
+  @IsString()
   @IsOptional()
-  id_user?: User | null;
+  @Field(() => String, {
+    nullable: true,
+  })
+  nameSurname!: string | null;
 
   @ApiProperty({
     required: true,
@@ -74,24 +66,18 @@ class Apartment {
   })
   @IsString()
   @Field(() => String)
-  name!: string;
-
-  @ApiProperty({
-    required: true,
-    type: Number,
-  })
-  @IsNumber()
-  @Field(() => Number)
-  price!: number;
+  password!: string;
 
   @ApiProperty({
     required: false,
-    type: () => [Reservation],
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Reservation)
+  @IsString()
   @IsOptional()
-  reservations?: Array<Reservation>;
+  @Field(() => String, {
+    nullable: true,
+  })
+  phoneNumber!: string | null;
 
   @ApiProperty({
     required: true,
@@ -101,4 +87,4 @@ class Apartment {
   @Field(() => Date)
   updatedAt!: Date;
 }
-export { Apartment };
+export { Owner };

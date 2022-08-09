@@ -17,16 +17,7 @@ import { SortOrder } from "../../util/SortOrder";
   isAbstract: true,
   description: undefined,
 })
-class CheckOrderByInput {
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  amount?: SortOrder;
-
+class OwnerOrderByInput {
   @ApiProperty({
     required: false,
     enum: ["asc", "desc"],
@@ -35,6 +26,15 @@ class CheckOrderByInput {
     nullable: true,
   })
   createdAt?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  email?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -52,7 +52,7 @@ class CheckOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  idReservation?: SortOrder;
+  nameSurname?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -61,8 +61,16 @@ class CheckOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  paid?: SortOrder;
+  password?: SortOrder;
 
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  phoneNumber?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -74,4 +82,4 @@ class CheckOrderByInput {
   updatedAt?: SortOrder;
 }
 
-export { CheckOrderByInput };
+export { OwnerOrderByInput };

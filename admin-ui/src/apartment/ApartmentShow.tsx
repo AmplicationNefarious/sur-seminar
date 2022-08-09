@@ -14,6 +14,7 @@ import {
 import { APARTMENT_TITLE_FIELD } from "./ApartmentTitle";
 import { USER_TITLE_FIELD } from "../user/UserTitle";
 
+
 export const ApartmentShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>

@@ -23,7 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "docker:build": "docker build ."
+    "docker:build": "docker build .",
+    "postinstall": "npm ci --prefix web && npm ci --prefix admin-ui && npm ci --prefix server"
   },
   "eslintConfig": {
     "extends": [
