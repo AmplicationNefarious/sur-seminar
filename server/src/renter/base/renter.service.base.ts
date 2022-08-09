@@ -47,7 +47,7 @@ export class RenterServiceBase {
     return this.prisma.renter.delete(args);
   }
 
-  async findApartmants(
+  async findApartments(
     parentId: string,
     args: Prisma.ApartmentFindManyArgs
   ): Promise<Apartment[]> {
@@ -55,6 +55,6 @@ export class RenterServiceBase {
       .findUnique({
         where: { id: parentId },
       })
-      .apartmants(args);
+      .apartments(args);
   }
 }

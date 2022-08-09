@@ -52,7 +52,7 @@ class CheckOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  idReservation?: SortOrder;
+  idReservationId?: SortOrder;
 
   @ApiProperty({
     required: false,

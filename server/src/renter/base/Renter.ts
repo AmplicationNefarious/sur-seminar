@@ -23,7 +23,7 @@ class Renter {
   @ValidateNested()
   @Type(() => Apartment)
   @IsOptional()
-  apartmants?: Array<Apartment>;
+  apartments?: Array<Apartment>;
 
   @ApiProperty({
     required: true,

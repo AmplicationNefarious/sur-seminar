@@ -151,11 +151,11 @@ export class RenterResolverBase {
     action: "read",
     possession: "any",
   })
-  async apartmants(
+  async apartments(
     @graphql.Parent() parent: Renter,
     @graphql.Args() args: ApartmentFindManyArgs
   ): Promise<Apartment[]> {
-    const results = await this.service.findApartmants(parent.id, args);
+    const results = await this.service.findApartments(parent.id, args);
 
     if (!results) {
       return [];

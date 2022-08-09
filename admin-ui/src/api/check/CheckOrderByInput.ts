@@ -4,7 +4,7 @@ export type CheckOrderByInput = {
   amount?: SortOrder;
   createdAt?: SortOrder;
   id?: SortOrder;
-  idReservation?: SortOrder;
+  idReservationId?: SortOrder;
   paid?: SortOrder;
   updatedAt?: SortOrder;
 };

@@ -28,7 +28,7 @@ class RenterWhereInput {
   @Field(() => ApartmentListRelationFilter, {
     nullable: true,
   })
-  apartmants?: ApartmentListRelationFilter;
+  apartments?: ApartmentListRelationFilter;
 
   @ApiProperty({
     required: false,

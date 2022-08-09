@@ -25,6 +25,7 @@ import { DeleteReservationArgs } from "./DeleteReservationArgs";
 import { ReservationFindManyArgs } from "./ReservationFindManyArgs";
 import { ReservationFindUniqueArgs } from "./ReservationFindUniqueArgs";
 import { Reservation } from "./Reservation";
+import { Check } from "../../check/base/Check";
 import { Apartment } from "../../apartment/base/Apartment";
 import { ReservationService } from "../reservation.service";
 
@@ -100,6 +101,12 @@ export class ReservationResolverBase {
       data: {
         ...args.data,
 
+        check: args.data.check
+          ? {
+              connect: args.data.check,
+            }
+          : undefined,
+
         idApartment: {
           connect: args.data.idApartment,
         },
@@ -122,6 +129,12 @@ export class ReservationResolverBase {
         ...args,
         data: {
           ...args.data,
+
+          check: args.data.check
+            ? {
+                connect: args.data.check,
+              }
+            : undefined,
 
           idApartment: {
             connect: args.data.idApartment,
@@ -157,6 +170,22 @@ export class ReservationResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Check, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Check",
+    action: "read",
+    possession: "any",
+  })
+  async check(@graphql.Parent() parent: Reservation): Promise<Check | null> {
+    const result = await this.service.getCheck(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

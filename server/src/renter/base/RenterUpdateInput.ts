@@ -26,7 +26,7 @@ class RenterUpdateInput {
   @Field(() => ApartmentUpdateManyWithoutRentersInput, {
     nullable: true,
   })
-  apartmants?: ApartmentUpdateManyWithoutRentersInput;
+  apartments?: ApartmentUpdateManyWithoutRentersInput;
 
   @ApiProperty({
     required: false,

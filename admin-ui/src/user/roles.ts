@@ -1,14 +1,14 @@
 export const ROLES = [
   {
-    name: "User",
+    name: "user",
     displayName: "User",
   },
   {
-    name: "custumer",
-    displayName: "Custumer",
+    name: "customer",
+    displayName: "Customer",
   },
   {
-    name: "Renter",
+    name: "renter",
     displayName: "Renter",
   },
   {

@@ -15,9 +15,9 @@ export const RenterList = (props: ListProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="Email" source="email" />
         <TextField label="ID" source="id" />
-        <TextField label="NameSurname" source="nameSurname" />
+        <TextField label="Name and surname" source="nameSurname" />
         <TextField label="Password" source="password" />
-        <TextField label="PhoneNumber" source="phoneNumber" />
+        <TextField label="Phone number" source="phoneNumber" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Username" source="username" />
       </Datagrid>

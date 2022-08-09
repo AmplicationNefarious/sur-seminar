@@ -1,7 +1,7 @@
 import { ApartmentUpdateManyWithoutRentersInput } from "./ApartmentUpdateManyWithoutRentersInput";
 
 export type RenterUpdateInput = {
-  apartmants?: ApartmentUpdateManyWithoutRentersInput;
+  apartments?: ApartmentUpdateManyWithoutRentersInput;
   email?: string;
   nameSurname?: string;
   password?: string;

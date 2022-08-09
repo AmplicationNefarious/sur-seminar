@@ -1,5 +1,7 @@
+import { ReservationWhereUniqueInput } from "../reservation/ReservationWhereUniqueInput";
+
 export type CheckUpdateInput = {
   amount?: number | null;
-  idReservation?: string;
+  idReservation?: ReservationWhereUniqueInput;
   paid?: boolean | null;
 };

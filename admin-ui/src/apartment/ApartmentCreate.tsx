@@ -20,7 +20,7 @@ export const ApartmentCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Address" source="address" />
         <TextInput label="Description" multiline source="description" />
         <TextInput label="Name" source="name" />
-        <NumberInput label="PriceANight" source="price" />
+        <NumberInput label="Price per night" source="price" />
         <ReferenceArrayInput
           source="renters"
           reference="Renter"

@@ -17,7 +17,7 @@ export const ApartmentList = (props: ListProps): React.ReactElement => {
         <TextField label="Description" source="description" />
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
-        <TextField label="PriceANight" source="price" />
+        <TextField label="Price per night" source="price" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>

@@ -3,7 +3,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type RenterWhereInput = {
-  apartmants?: ApartmentListRelationFilter;
+  apartments?: ApartmentListRelationFilter;
   email?: StringFilter;
   id?: StringFilter;
   nameSurname?: StringFilter;

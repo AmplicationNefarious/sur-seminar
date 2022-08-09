@@ -32,6 +32,7 @@ model Apartment {
 }
 
 model Reservation {
+  check             Check?
   createdAt         DateTime  @default(now())
   daysOfReservation DateTime
   emailOfUser       String?
@@ -43,16 +44,17 @@ model Reservation {
 }
 
 model Check {
-  amount        Float?
-  createdAt     DateTime @default(now())
-  id            String   @id @default(cuid())
-  idReservation String
-  paid          Boolean?
-  updatedAt     DateTime @updatedAt
+  amount          Float?
+  createdAt       DateTime    @default(now())
+  id              String      @id @default(cuid())
+  idReservation   Reservation @relation(fields: [idReservationId], references: [id])
+  idReservationId String      @unique
+  paid            Boolean?
+  updatedAt       DateTime    @updatedAt
 }
 
 model Renter {
-  apartmants  Apartment[]
+  apartments  Apartment[]
   createdAt   DateTime    @default(now())
   email       String
   id          String      @id @default(cuid())

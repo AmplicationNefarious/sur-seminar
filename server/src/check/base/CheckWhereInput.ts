@@ -13,8 +13,9 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
+import { ReservationWhereUniqueInput } from "../../reservation/base/ReservationWhereUniqueInput";
 import { BooleanNullableFilter } from "../../util/BooleanNullableFilter";
 @InputType()
 class CheckWhereInput {
@@ -42,14 +43,15 @@ class CheckWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: () => ReservationWhereUniqueInput,
   })
-  @Type(() => StringFilter)
+  @ValidateNested()
+  @Type(() => ReservationWhereUniqueInput)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => ReservationWhereUniqueInput, {
     nullable: true,
   })
-  idReservation?: StringFilter;
+  idReservation?: ReservationWhereUniqueInput;
 
   @ApiProperty({
     required: false,

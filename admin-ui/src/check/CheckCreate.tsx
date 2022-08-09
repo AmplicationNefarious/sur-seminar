@@ -4,16 +4,25 @@ import {
   SimpleForm,
   CreateProps,
   NumberInput,
-  TextInput,
+  ReferenceInput,
+  SelectInput,
   BooleanInput,
 } from "react-admin";
+
+import { ReservationTitle } from "../reservation/ReservationTitle";
 
 export const CheckCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
         <NumberInput label="Amount" source="amount" />
-        <TextInput label="ID_Reservation" source="idReservation" />
+        <ReferenceInput
+          source="reservation.id"
+          reference="Reservation"
+          label="Reservation"
+        >
+          <SelectInput optionText={ReservationTitle} />
+        </ReferenceInput>
         <BooleanInput label="Paid" source="paid" />
       </SimpleForm>
     </Create>

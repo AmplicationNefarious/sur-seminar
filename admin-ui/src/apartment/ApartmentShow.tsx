@@ -11,6 +11,7 @@ import {
   ReferenceField,
 } from "react-admin";
 
+import { CHECK_TITLE_FIELD } from "../check/CheckTitle";
 import { APARTMENT_TITLE_FIELD } from "./ApartmentTitle";
 
 export const ApartmentShow = (props: ShowProps): React.ReactElement => {
@@ -22,7 +23,7 @@ export const ApartmentShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Description" source="description" />
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
-        <TextField label="PriceANight" source="price" />
+        <TextField label="Price per night" source="price" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
           reference="Reservation"
@@ -30,6 +31,9 @@ export const ApartmentShow = (props: ShowProps): React.ReactElement => {
           label="Reservations"
         >
           <Datagrid rowClick="show">
+            <ReferenceField label="Check" source="check.id" reference="Check">
+              <TextField source={CHECK_TITLE_FIELD} />
+            </ReferenceField>
             <DateField source="createdAt" label="Created At" />
             <TextField label="StartReservation" source="daysOfReservation" />
             <TextField label="EmailOfUser" source="emailOfUser" />

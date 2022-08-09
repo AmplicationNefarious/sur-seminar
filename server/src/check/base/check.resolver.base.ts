@@ -25,6 +25,7 @@ import { DeleteCheckArgs } from "./DeleteCheckArgs";
 import { CheckFindManyArgs } from "./CheckFindManyArgs";
 import { CheckFindUniqueArgs } from "./CheckFindUniqueArgs";
 import { Check } from "./Check";
+import { Reservation } from "../../reservation/base/Reservation";
 import { CheckService } from "../check.service";
 
 @graphql.Resolver(() => Check)
@@ -92,7 +93,13 @@ export class CheckResolverBase {
   async createCheck(@graphql.Args() args: CreateCheckArgs): Promise<Check> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        idReservation: {
+          connect: args.data.idReservation,
+        },
+      },
     });
   }
 
@@ -109,7 +116,13 @@ export class CheckResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          idReservation: {
+            connect: args.data.idReservation,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -140,5 +153,23 @@ export class CheckResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Reservation, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Reservation",
+    action: "read",
+    possession: "any",
+  })
+  async idReservation(
+    @graphql.Parent() parent: Check
+  ): Promise<Reservation | null> {
+    const result = await this.service.getIdReservation(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

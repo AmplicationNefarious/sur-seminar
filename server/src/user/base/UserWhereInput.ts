@@ -19,6 +19,8 @@ import { IsOptional } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 =======
 <<<<<<< HEAD
 import { StringFilter } from "../../util/StringFilter";
@@ -26,6 +28,7 @@ import { StringNullableFilter } from "../../util/StringNullableFilter";
 =======
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
 >>>>>>> main
@@ -64,6 +67,17 @@ class UserWhereInput {
   })
   email?: StringNullableFilter;
 >>>>>>> main
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  email?: StringFilter;
 
   @ApiProperty({
     required: false,

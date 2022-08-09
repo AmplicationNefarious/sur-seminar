@@ -26,7 +26,7 @@ class RenterCreateInput {
   @Field(() => ApartmentCreateNestedManyWithoutRentersInput, {
     nullable: true,
   })
-  apartmants?: ApartmentCreateNestedManyWithoutRentersInput;
+  apartments?: ApartmentCreateNestedManyWithoutRentersInput;
 
   @ApiProperty({
     required: true,

@@ -16,9 +16,11 @@ import {
   IsOptional,
   IsDate,
   IsString,
+  ValidateNested,
   IsBoolean,
 } from "class-validator";
 import { Type } from "class-transformer";
+import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()
 class Check {
   @ApiProperty({
@@ -50,11 +52,12 @@ class Check {
 
   @ApiProperty({
     required: true,
-    type: String,
+    type: () => Reservation,
   })
-  @IsString()
-  @Field(() => String)
-  idReservation!: string;
+  @ValidateNested()
+  @Type(() => Reservation)
+  idReservation?: Reservation;
+
 
   @ApiProperty({
     required: false,
