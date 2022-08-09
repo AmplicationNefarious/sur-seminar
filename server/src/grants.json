@@ -28,5 +28,125 @@
     "resource": "User",
     "action": "read:any",
     "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Owner",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Owner",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Owner",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Owner",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Owner",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Reservation",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Reservation",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Reservation",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Reservation",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Reservation",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Check",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Check",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Check",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Check",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Check",
+    "action": "read:any",
+    "attributes": "*"
   }
 ]

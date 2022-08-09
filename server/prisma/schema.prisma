@@ -15,3 +15,47 @@ model User {
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
+
+model Owner {
+  apartments  Apartment[]
+  createdAt   DateTime    @default(now())
+  email       String      @unique
+  id          String      @id @default(cuid())
+  nameSurname String?
+  password    String
+  phoneNumber String?
+  updatedAt   DateTime    @updatedAt
+}
+
+model Apartment {
+  address      String
+  createdAt    DateTime      @default(now())
+  description  String?
+  id           String        @id @default(cuid())
+  idOwner      Owner?        @relation(fields: [idOwnerId], references: [id])
+  idOwnerId    String?
+  name         String
+  price        Float
+  reservations Reservation[]
+  updatedAt    DateTime      @updatedAt
+}
+
+model Reservation {
+  createdAt         DateTime  @default(now())
+  daysOfReservation DateTime
+  emailOfUser       String?
+  endReservation    DateTime?
+  id                String    @id @default(cuid())
+  idApartment       Apartment @relation(fields: [idApartmentId], references: [id])
+  idApartmentId     String
+  updatedAt         DateTime  @updatedAt
+}
+
+model Check {
+  amount        Float?
+  createdAt     DateTime @default(now())
+  id            String   @id @default(cuid())
+  idReservation String
+  payed         Boolean?
+  updatedAt     DateTime @updatedAt
+}
