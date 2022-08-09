@@ -1,4 +1,4 @@
-import { User } from "../user/User";
+import { Renter } from "../renter/Renter";
 import { Reservation } from "../reservation/Reservation";
 
 export type Apartment = {
@@ -6,9 +6,9 @@ export type Apartment = {
   createdAt: Date;
   description: string | null;
   id: string;
-  id_user?: User | null;
   name: string;
   price: number;
+  renters?: Array<Renter>;
   reservations?: Array<Reservation>;
   updatedAt: Date;
 };

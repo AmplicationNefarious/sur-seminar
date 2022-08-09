@@ -43,6 +43,5 @@ class CheckCreateInput {
     nullable: true,
   })
   paid?: boolean | null;
-
 }
 export { CheckCreateInput };

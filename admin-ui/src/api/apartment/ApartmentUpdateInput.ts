@@ -1,11 +1,11 @@
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { RenterUpdateManyWithoutApartmentsInput } from "./RenterUpdateManyWithoutApartmentsInput";
 import { ReservationUpdateManyWithoutApartmentsInput } from "./ReservationUpdateManyWithoutApartmentsInput";
 
 export type ApartmentUpdateInput = {
   address?: string;
   description?: string | null;
-  id_user?: UserWhereUniqueInput | null;
   name?: string;
   price?: number;
+  renters?: RenterUpdateManyWithoutApartmentsInput;
   reservations?: ReservationUpdateManyWithoutApartmentsInput;
 };

@@ -14,10 +14,10 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  ValidateNested,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { RenterUpdateManyWithoutApartmentsInput } from "./RenterUpdateManyWithoutApartmentsInput";
 import { Type } from "class-transformer";
 import { ReservationUpdateManyWithoutApartmentsInput } from "./ReservationUpdateManyWithoutApartmentsInput";
 @InputType()
@@ -46,19 +46,6 @@ class ApartmentUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  id_user?: UserWhereUniqueInput | null;
-
-
-  @ApiProperty({
-    required: false,
     type: String,
   })
   @IsString()
@@ -78,6 +65,18 @@ class ApartmentUpdateInput {
     nullable: true,
   })
   price?: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => RenterUpdateManyWithoutApartmentsInput,
+  })
+  @ValidateNested()
+  @Type(() => RenterUpdateManyWithoutApartmentsInput)
+  @IsOptional()
+  @Field(() => RenterUpdateManyWithoutApartmentsInput, {
+    nullable: true,
+  })
+  renters?: RenterUpdateManyWithoutApartmentsInput;
 
   @ApiProperty({
     required: false,

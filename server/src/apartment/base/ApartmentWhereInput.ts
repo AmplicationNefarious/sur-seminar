@@ -15,8 +15,8 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
 import { FloatFilter } from "../../util/FloatFilter";
+import { RenterListRelationFilter } from "../../renter/base/RenterListRelationFilter";
 import { ReservationListRelationFilter } from "../../reservation/base/ReservationListRelationFilter";
 @InputType()
 class ApartmentWhereInput {
@@ -55,18 +55,6 @@ class ApartmentWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  id_user?: UserWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
     type: StringFilter,
   })
   @Type(() => StringFilter)
@@ -86,6 +74,18 @@ class ApartmentWhereInput {
     nullable: true,
   })
   price?: FloatFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => RenterListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => RenterListRelationFilter)
+  @IsOptional()
+  @Field(() => RenterListRelationFilter, {
+    nullable: true,
+  })
+  renters?: RenterListRelationFilter;
 
   @ApiProperty({
     required: false,

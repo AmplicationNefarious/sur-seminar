@@ -14,10 +14,10 @@ import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
-  ValidateNested,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { RenterCreateNestedManyWithoutApartmentsInput } from "./RenterCreateNestedManyWithoutApartmentsInput";
 import { Type } from "class-transformer";
 import { ReservationCreateNestedManyWithoutApartmentsInput } from "./ReservationCreateNestedManyWithoutApartmentsInput";
 @InputType()
@@ -42,18 +42,6 @@ class ApartmentCreateInput {
   description?: string | null;
 
   @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  id_user?: UserWhereUniqueInput | null;
-
-  @ApiProperty({
     required: true,
     type: String,
   })
@@ -68,6 +56,18 @@ class ApartmentCreateInput {
   @IsNumber()
   @Field(() => Number)
   price!: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => RenterCreateNestedManyWithoutApartmentsInput,
+  })
+  @ValidateNested()
+  @Type(() => RenterCreateNestedManyWithoutApartmentsInput)
+  @IsOptional()
+  @Field(() => RenterCreateNestedManyWithoutApartmentsInput, {
+    nullable: true,
+  })
+  renters?: RenterCreateNestedManyWithoutApartmentsInput;
 
   @ApiProperty({
     required: false,

@@ -21,6 +21,10 @@ import { CheckList } from "./check/CheckList";
 import { CheckCreate } from "./check/CheckCreate";
 import { CheckEdit } from "./check/CheckEdit";
 import { CheckShow } from "./check/CheckShow";
+import { RenterList } from "./renter/RenterList";
+import { RenterCreate } from "./renter/RenterCreate";
+import { RenterEdit } from "./renter/RenterEdit";
+import { RenterShow } from "./renter/RenterShow";
 import { httpAuthProvider } from "./auth-provider/ra-auth-http";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={CheckEdit}
           create={CheckCreate}
           show={CheckShow}
+        />
+        <Resource
+          name="Renter"
+          list={RenterList}
+          edit={RenterEdit}
+          create={RenterCreate}
+          show={RenterShow}
         />
       </Admin>
     </div>

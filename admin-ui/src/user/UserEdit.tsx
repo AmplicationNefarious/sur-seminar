@@ -4,10 +4,9 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
   TextInput,
   PasswordInput,
+  SelectArrayInput,
 } from "react-admin";
 
 import { ApartmentTitle } from "../apartment/ApartmentTitle";
@@ -17,14 +16,6 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="apartments"
-          reference="Apartment"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={ApartmentTitle} />
-        </ReferenceArrayInput>
         <TextInput label="Email" source="email" type="email" />
         <TextInput label="NameSurname" source="nameSurname" />
         <PasswordInput label="Password" source="password" />

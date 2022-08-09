@@ -2,11 +2,17 @@
   {
     "role": "renter",
     "resource": "User",
-    "action": "read:own",
+    "action": "create:any",
     "attributes": "*"
   },
   {
-    "role": "renter",
+    "role": "custumer",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "User",
     "action": "create:any",
     "attributes": "*"
@@ -18,7 +24,31 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "User",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "User",
     "action": "delete:any",
     "attributes": "*"
@@ -30,7 +60,31 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "User",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "Apartment",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Apartment",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "Apartment",
     "action": "read:own",
     "attributes": "*"
@@ -42,13 +96,49 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Apartment",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Apartment",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
     "resource": "Apartment",
     "action": "update:any",
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Apartment",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Apartment",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "Apartment",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Apartment",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "Apartment",
     "action": "delete:any",
     "attributes": "*"
@@ -60,7 +150,31 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Apartment",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Apartment",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "Reservation",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Reservation",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "Reservation",
     "action": "read:own",
     "attributes": "*"
@@ -72,13 +186,49 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Reservation",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Reservation",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
     "resource": "Reservation",
     "action": "update:any",
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Reservation",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Reservation",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "Reservation",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Reservation",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "Reservation",
     "action": "delete:any",
     "attributes": "*"
@@ -90,7 +240,31 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Reservation",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Reservation",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "Check",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Check",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "Check",
     "action": "read:own",
     "attributes": "*"
@@ -102,7 +276,31 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Check",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Check",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
+    "resource": "Check",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Check",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
     "resource": "Check",
     "action": "update:any",
     "attributes": "*"
@@ -114,8 +312,80 @@
     "attributes": "*"
   },
   {
+    "role": "custumer",
+    "resource": "Check",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Check",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
     "role": "renter",
     "resource": "Check",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Check",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Check",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Renter",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Renter",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Renter",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Renter",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Renter",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Renter",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "custumer",
+    "resource": "Renter",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Renter",
     "action": "read:any",
     "attributes": "*"
   }

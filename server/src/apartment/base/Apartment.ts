@@ -15,11 +15,11 @@ import {
   IsString,
   IsDate,
   IsOptional,
-  ValidateNested,
   IsNumber,
+  ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { User } from "../../user/base/User";
+import { Renter } from "../../renter/base/Renter";
 import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()
 class Apartment {
@@ -59,15 +59,6 @@ class Apartment {
   id!: string;
 
   @ApiProperty({
-    required: false,
-    type: () => User,
-  })
-  @ValidateNested()
-  @Type(() => User)
-  @IsOptional()
-  id_user?: User | null;
-
-  @ApiProperty({
     required: true,
     type: String,
   })
@@ -82,6 +73,15 @@ class Apartment {
   @IsNumber()
   @Field(() => Number)
   price!: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Renter],
+  })
+  @ValidateNested()
+  @Type(() => Renter)
+  @IsOptional()
+  renters?: Array<Renter>;
 
   @ApiProperty({
     required: false,

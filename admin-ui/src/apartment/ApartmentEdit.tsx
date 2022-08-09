@@ -5,14 +5,12 @@ import {
   SimpleForm,
   EditProps,
   TextInput,
-  ReferenceInput,
-  SelectInput,
   NumberInput,
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
 
-import { UserTitle } from "../user/UserTitle";
+import { RenterTitle } from "../renter/RenterTitle";
 import { ReservationTitle } from "../reservation/ReservationTitle";
 
 export const ApartmentEdit = (props: EditProps): React.ReactElement => {
@@ -21,11 +19,16 @@ export const ApartmentEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="Address" source="address" />
         <TextInput label="Description" multiline source="description" />
-        <ReferenceInput source="user.id" reference="User" label="ID_User">
-          <SelectInput optionText={UserTitle} />
-        </ReferenceInput>
         <TextInput label="Name" source="name" />
         <NumberInput label="PriceANight" source="price" />
+        <ReferenceArrayInput
+          source="renters"
+          reference="Renter"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={RenterTitle} />
+        </ReferenceArrayInput>
         <ReferenceArrayInput
           source="reservations"
           reference="Reservation"
