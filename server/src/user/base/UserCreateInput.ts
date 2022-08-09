@@ -11,9 +11,127 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+<<<<<<< HEAD
 import { IsString, IsOptional } from "class-validator";
+=======
+<<<<<<< HEAD
+import { IsString, IsOptional } from "class-validator";
+=======
+<<<<<<< HEAD
+import { IsString, IsOptional } from "class-validator";
+=======
+<<<<<<< HEAD
+import { IsString, IsOptional } from "class-validator";
+=======
+import { ApartmentCreateNestedManyWithoutUsersInput } from "./ApartmentCreateNestedManyWithoutUsersInput";
+import { ValidateNested, IsOptional, IsString } from "class-validator";
+import { Type } from "class-transformer";
+>>>>>>> main
+>>>>>>> main
+>>>>>>> main
+>>>>>>> main
 @InputType()
 class UserCreateInput {
+  @ApiProperty({
+    required: false,
+    type: () => ApartmentCreateNestedManyWithoutUsersInput,
+  })
+  @ValidateNested()
+  @Type(() => ApartmentCreateNestedManyWithoutUsersInput)
+  @IsOptional()
+  @Field(() => ApartmentCreateNestedManyWithoutUsersInput, {
+    nullable: true,
+  })
+  apartments?: ApartmentCreateNestedManyWithoutUsersInput;
+
+  @ApiProperty({
+<<<<<<< HEAD
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
+=======
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  email?: string | null;
+>>>>>>> main
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nameSurname?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nameSurname?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nameSurname?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nameSurname?: string | null;
+
   @ApiProperty({
     required: true,
     type: String,

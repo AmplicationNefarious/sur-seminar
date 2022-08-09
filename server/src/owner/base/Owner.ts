@@ -11,28 +11,19 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsNumber,
-  IsOptional,
-  IsDate,
-  IsString,
-  ValidateNested,
-  IsBoolean,
-} from "class-validator";
+import { Apartment } from "../../apartment/base/Apartment";
+import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
-import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()
-class Check {
+class Owner {
   @ApiProperty({
     required: false,
-    type: Number,
+    type: () => [Apartment],
   })
-  @IsNumber()
+  @ValidateNested()
+  @Type(() => Apartment)
   @IsOptional()
-  @Field(() => Number, {
-    nullable: true,
-  })
-  amount!: number | null;
+  apartments?: Array<Apartment>;
 
   @ApiProperty({
     required: true,
@@ -48,25 +39,45 @@ class Check {
   })
   @IsString()
   @Field(() => String)
-  id!: string;
+  email!: string;
 
   @ApiProperty({
     required: true,
-    type: () => Reservation,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => Reservation)
-  idReservation?: Reservation;
+  @IsString()
+  @Field(() => String)
+  id!: string;
+
   @ApiProperty({
     required: false,
-    type: Boolean,
+    type: String,
   })
-  @IsBoolean()
+  @IsString()
   @IsOptional()
-  @Field(() => Boolean, {
+  @Field(() => String, {
     nullable: true,
   })
-  paid!: boolean | null;
+  nameSurname!: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  password!: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  phoneNumber!: string | null;
 
   @ApiProperty({
     required: true,
@@ -76,4 +87,4 @@ class Check {
   @Field(() => Date)
   updatedAt!: Date;
 }
-export { Check };
+export { Owner };
