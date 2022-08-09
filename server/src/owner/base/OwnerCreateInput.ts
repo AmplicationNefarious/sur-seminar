@@ -11,42 +11,30 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApartmentCreateNestedManyWithoutUsersInput } from "./ApartmentCreateNestedManyWithoutUsersInput";
+import { ApartmentCreateNestedManyWithoutOwnersInput } from "./ApartmentCreateNestedManyWithoutOwnersInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 @InputType()
-class UserCreateInput {
+class OwnerCreateInput {
   @ApiProperty({
     required: false,
-    type: () => ApartmentCreateNestedManyWithoutUsersInput,
+    type: () => ApartmentCreateNestedManyWithoutOwnersInput,
   })
   @ValidateNested()
-  @Type(() => ApartmentCreateNestedManyWithoutUsersInput)
+  @Type(() => ApartmentCreateNestedManyWithoutOwnersInput)
   @IsOptional()
-  @Field(() => ApartmentCreateNestedManyWithoutUsersInput, {
+  @Field(() => ApartmentCreateNestedManyWithoutOwnersInput, {
     nullable: true,
   })
-  apartments?: ApartmentCreateNestedManyWithoutUsersInput;
+  apartments?: ApartmentCreateNestedManyWithoutOwnersInput;
 
   @ApiProperty({
-<<<<<<< HEAD
     required: true,
     type: String,
   })
   @IsString()
   @Field(() => String)
   email!: string;
-=======
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  email?: string | null;
->>>>>>> main
 
   @ApiProperty({
     required: false,
@@ -77,23 +65,5 @@ class UserCreateInput {
     nullable: true,
   })
   phoneNumber?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: [String],
-  })
-  @IsString({
-    each: true,
-  })
-  @Field(() => [String])
-  roles!: Array<string>;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
 }
-export { UserCreateInput };
+export { OwnerCreateInput };

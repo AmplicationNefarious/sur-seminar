@@ -37,7 +37,11 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+<<<<<<< HEAD
   email?: string;
+=======
+  email?: string | null;
+>>>>>>> main
 
   @ApiProperty({
     required: false,

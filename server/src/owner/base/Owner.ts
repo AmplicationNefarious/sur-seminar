@@ -15,7 +15,7 @@ import { Apartment } from "../../apartment/base/Apartment";
 import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
 @ObjectType()
-class User {
+class Owner {
   @ApiProperty({
     required: false,
     type: () => [Apartment],
@@ -32,17 +32,6 @@ class User {
   @Type(() => Date)
   @Field(() => Date)
   createdAt!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  email!: string | null;
 
   @ApiProperty({
     required: true,
@@ -72,6 +61,14 @@ class User {
   nameSurname!: string | null;
 
   @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  password!: string;
+
+  @ApiProperty({
     required: false,
     type: String,
   })
@@ -84,28 +81,10 @@ class User {
 
   @ApiProperty({
     required: true,
-    type: [String],
-  })
-  @IsString({
-    each: true,
-  })
-  @Field(() => [String])
-  roles!: Array<string>;
-
-  @ApiProperty({
-    required: true,
   })
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
   updatedAt!: Date;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
 }
-export { User };
+export { Owner };

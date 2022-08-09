@@ -11,51 +11,22 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import {
-  IsString,
-  IsOptional,
-  ValidateNested,
-  IsNumber,
-} from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
+import { ApartmentUpdateManyWithoutOwnersInput } from "./ApartmentUpdateManyWithoutOwnersInput";
+import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
-import { ReservationUpdateManyWithoutApartmentsInput } from "./ReservationUpdateManyWithoutApartmentsInput";
 @InputType()
-class ApartmentUpdateInput {
+class OwnerUpdateInput {
   @ApiProperty({
     required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  address?: string;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  description?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => UserWhereUniqueInput,
+    type: () => ApartmentUpdateManyWithoutOwnersInput,
   })
   @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
+  @Type(() => ApartmentUpdateManyWithoutOwnersInput)
   @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
+  @Field(() => ApartmentUpdateManyWithoutOwnersInput, {
     nullable: true,
   })
-  id_user?: UserWhereUniqueInput | null;
-
+  apartments?: ApartmentUpdateManyWithoutOwnersInput;
 
   @ApiProperty({
     required: false,
@@ -66,29 +37,39 @@ class ApartmentUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  name?: string;
+  email?: string;
 
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  @Field(() => Number, {
+  @Field(() => String, {
     nullable: true,
   })
-  price?: number;
+  nameSurname?: string | null;
 
   @ApiProperty({
     required: false,
-    type: () => ReservationUpdateManyWithoutApartmentsInput,
+    type: String,
   })
-  @ValidateNested()
-  @Type(() => ReservationUpdateManyWithoutApartmentsInput)
+  @IsString()
   @IsOptional()
-  @Field(() => ReservationUpdateManyWithoutApartmentsInput, {
+  @Field(() => String, {
     nullable: true,
   })
-  reservations?: ReservationUpdateManyWithoutApartmentsInput;
+  password?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  phoneNumber?: string | null;
 }
-export { ApartmentUpdateInput };
+export { OwnerUpdateInput };
