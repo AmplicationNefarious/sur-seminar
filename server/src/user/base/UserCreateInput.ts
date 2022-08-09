@@ -20,9 +20,13 @@ import { IsString, IsOptional } from "class-validator";
 <<<<<<< HEAD
 import { IsString, IsOptional } from "class-validator";
 =======
+<<<<<<< HEAD
+import { IsString, IsOptional } from "class-validator";
+=======
 import { ApartmentCreateNestedManyWithoutUsersInput } from "./ApartmentCreateNestedManyWithoutUsersInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
+>>>>>>> main
 >>>>>>> main
 >>>>>>> main
 >>>>>>> main
@@ -59,6 +63,25 @@ class UserCreateInput {
   })
   email?: string | null;
 >>>>>>> main
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  nameSurname?: string | null;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
 
   @ApiProperty({
     required: false,
