@@ -11,48 +11,22 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApartmentUpdateManyWithoutUsersInput } from "./ApartmentUpdateManyWithoutUsersInput";
+import { ApartmentUpdateManyWithoutOwnersInput } from "./ApartmentUpdateManyWithoutOwnersInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 @InputType()
-class UserUpdateInput {
+class OwnerUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => ApartmentUpdateManyWithoutUsersInput,
+    type: () => ApartmentUpdateManyWithoutOwnersInput,
   })
   @ValidateNested()
-  @Type(() => ApartmentUpdateManyWithoutUsersInput)
+  @Type(() => ApartmentUpdateManyWithoutOwnersInput)
   @IsOptional()
-  @Field(() => ApartmentUpdateManyWithoutUsersInput, {
+  @Field(() => ApartmentUpdateManyWithoutOwnersInput, {
     nullable: true,
   })
-  apartments?: ApartmentUpdateManyWithoutUsersInput;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-<<<<<<< HEAD
-  email?: string;
-=======
-  email?: string | null;
->>>>>>> main
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  nameSurname?: string | null;
+  apartments?: ApartmentUpdateManyWithoutOwnersInput;
 
   @ApiProperty({
     required: false,
@@ -97,29 +71,5 @@ class UserUpdateInput {
     nullable: true,
   })
   phoneNumber?: string | null;
-
-  @ApiProperty({
-    required: false,
-    type: [String],
-  })
-  @IsString({
-    each: true,
-  })
-  @IsOptional()
-  @Field(() => [String], {
-    nullable: true,
-  })
-  roles?: Array<string>;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  username?: string;
 }
-export { UserUpdateInput };
+export { OwnerUpdateInput };

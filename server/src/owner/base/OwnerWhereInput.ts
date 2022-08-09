@@ -14,20 +14,10 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ApartmentListRelationFilter } from "../../apartment/base/ApartmentListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-<<<<<<< HEAD
-import { IsOptional } from "class-validator";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-=======
-<<<<<<< HEAD
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-=======
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { StringFilter } from "../../util/StringFilter";
->>>>>>> main
->>>>>>> main
 @InputType()
-class UserWhereInput {
+class OwnerWhereInput {
   @ApiProperty({
     required: false,
     type: () => ApartmentListRelationFilter,
@@ -39,28 +29,6 @@ class UserWhereInput {
     nullable: true,
   })
   apartments?: ApartmentListRelationFilter;
-
-  @ApiProperty({
-    required: false,
-<<<<<<< HEAD
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  email?: StringFilter;
-=======
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  email?: StringNullableFilter;
->>>>>>> main
 
   @ApiProperty({
     required: false,
@@ -97,6 +65,17 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  password?: StringFilter;
+
+  @ApiProperty({
+    required: false,
     type: StringNullableFilter,
   })
   @Type(() => StringNullableFilter)
@@ -105,16 +84,5 @@ class UserWhereInput {
     nullable: true,
   })
   phoneNumber?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  username?: StringFilter;
 }
-export { UserWhereInput };
+export { OwnerWhereInput };
