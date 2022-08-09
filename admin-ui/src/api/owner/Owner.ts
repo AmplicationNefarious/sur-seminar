@@ -1,13 +1,12 @@
 import { Apartment } from "../apartment/Apartment";
 
-export type User = {
+export type Owner = {
   apartments?: Array<Apartment>;
   createdAt: Date;
   email: string;
   id: string;
   nameSurname: string | null;
+  password: string;
   phoneNumber: string | null;
-  roles: Array<string>;
   updatedAt: Date;
-  username: string;
 };

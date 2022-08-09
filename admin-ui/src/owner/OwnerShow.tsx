@@ -11,23 +11,22 @@ import {
   ReferenceField,
 } from "react-admin";
 
-import { USER_TITLE_FIELD } from "./UserTitle";
+import { OWNER_TITLE_FIELD } from "./OwnerTitle";
 
-export const UserShow = (props: ShowProps): React.ReactElement => {
+export const OwnerShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
         <TextField label="Email" source="email" />
         <TextField label="ID" source="id" />
-        <TextField label="Name and surname" source="nameSurname" />
-        <TextField label="Phone number" source="phoneNumber" />
-        <TextField label="Roles" source="roles" />
+        <TextField label="NameSurname" source="nameSurname" />
+        <TextField label="Password" source="password" />
+        <TextField label="PhoneNumber" source="phoneNumber" />
         <DateField source="updatedAt" label="Updated At" />
-        <TextField label="Username" source="username" />
         <ReferenceManyField
           reference="Apartment"
-          target="UserId"
+          target="OwnerId"
           label="Apartments"
         >
           <Datagrid rowClick="show">
@@ -35,8 +34,12 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <DateField source="createdAt" label="Created At" />
             <TextField label="Description" source="description" />
             <TextField label="ID" source="id" />
-            <ReferenceField label="ID_User" source="user.id" reference="User">
-              <TextField source={USER_TITLE_FIELD} />
+            <ReferenceField
+              label="ID_Owner"
+              source="owner.id"
+              reference="Owner"
+            >
+              <TextField source={OWNER_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="Name" source="name" />
             <TextField label="PriceANight" source="price" />
