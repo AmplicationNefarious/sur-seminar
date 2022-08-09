@@ -14,8 +14,13 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ApartmentListRelationFilter } from "../../apartment/base/ApartmentListRelationFilter";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+<<<<<<< HEAD
+import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
+=======
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+>>>>>>> main
 @InputType()
 class UserWhereInput {
   @ApiProperty({
@@ -32,6 +37,16 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
+<<<<<<< HEAD
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  email?: StringFilter;
+=======
     type: StringNullableFilter,
   })
   @Type(() => StringNullableFilter)
@@ -40,6 +55,7 @@ class UserWhereInput {
     nullable: true,
   })
   email?: StringNullableFilter;
+>>>>>>> main
 
   @ApiProperty({
     required: false,

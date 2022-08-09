@@ -19,7 +19,6 @@ import {
   IsNumber,
 } from "class-validator";
 import { Type } from "class-transformer";
-
 import { User } from "../../user/base/User";
 import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()

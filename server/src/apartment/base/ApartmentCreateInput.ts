@@ -17,11 +17,7 @@ import {
   ValidateNested,
   IsNumber,
 } from "class-validator";
-<<<<<<< HEAD
 import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-=======
-import { OwnerWhereUniqueInput } from "../../owner/base/OwnerWhereUniqueInput";
->>>>>>> main
 import { Type } from "class-transformer";
 import { ReservationCreateNestedManyWithoutApartmentsInput } from "./ReservationCreateNestedManyWithoutApartmentsInput";
 @InputType()
@@ -47,7 +43,6 @@ class ApartmentCreateInput {
 
   @ApiProperty({
     required: false,
-<<<<<<< HEAD
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
@@ -57,17 +52,6 @@ class ApartmentCreateInput {
     nullable: true,
   })
   id_user?: UserWhereUniqueInput | null;
-=======
-    type: () => OwnerWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => OwnerWhereUniqueInput)
-  @IsOptional()
-  @Field(() => OwnerWhereUniqueInput, {
-    nullable: true,
-  })
-  idOwner?: OwnerWhereUniqueInput | null;
->>>>>>> main
 
   @ApiProperty({
     required: true,

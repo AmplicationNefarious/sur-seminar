@@ -2,7 +2,7 @@ import { ApartmentUpdateManyWithoutUsersInput } from "./ApartmentUpdateManyWitho
 
 export type UserUpdateInput = {
   apartments?: ApartmentUpdateManyWithoutUsersInput;
-  email?: string | null;
+  email?: string;
   nameSurname?: string | null;
   password?: string;
   phoneNumber?: string | null;

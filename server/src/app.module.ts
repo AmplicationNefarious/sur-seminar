@@ -2,10 +2,6 @@ import { Module, Scope } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
-<<<<<<< HEAD
-=======
-import { OwnerModule } from "./owner/owner.module";
->>>>>>> main
 import { ApartmentModule } from "./apartment/apartment.module";
 import { ReservationModule } from "./reservation/reservation.module";
 import { CheckModule } from "./check/check.module";

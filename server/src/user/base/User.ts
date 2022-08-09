@@ -50,6 +50,14 @@ class User {
   })
   @IsString()
   @Field(() => String)
+  email!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   id!: string;
 
   @ApiProperty({

@@ -102,7 +102,6 @@ export class ApartmentResolverBase {
       data: {
         ...args.data,
 
-
         id_user: args.data.id_user
           ? {
               connect: args.data.id_user,
@@ -127,12 +126,9 @@ export class ApartmentResolverBase {
         ...args,
         data: {
           ...args.data,
-
-
           id_user: args.data.id_user
             ? {
                 connect: args.data.id_user,
-
               }
             : undefined,
         },

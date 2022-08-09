@@ -2,7 +2,7 @@ import { ApartmentCreateNestedManyWithoutUsersInput } from "./ApartmentCreateNes
 
 export type UserCreateInput = {
   apartments?: ApartmentCreateNestedManyWithoutUsersInput;
-  email?: string | null;
+  email: string;
   nameSurname?: string | null;
   password: string;
   phoneNumber?: string | null;

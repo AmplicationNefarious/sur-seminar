@@ -29,6 +29,14 @@ class UserCreateInput {
   apartments?: ApartmentCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
+<<<<<<< HEAD
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  email!: string;
+=======
     required: false,
     type: String,
   })
@@ -38,6 +46,7 @@ class UserCreateInput {
     nullable: true,
   })
   email?: string | null;
+>>>>>>> main
 
   @ApiProperty({
     required: false,

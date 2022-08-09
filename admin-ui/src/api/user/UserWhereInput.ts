@@ -1,10 +1,10 @@
 import { ApartmentListRelationFilter } from "../apartment/ApartmentListRelationFilter";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 
 export type UserWhereInput = {
   apartments?: ApartmentListRelationFilter;
-  email?: StringNullableFilter;
+  email?: StringFilter;
   id?: StringFilter;
   nameSurname?: StringNullableFilter;
   phoneNumber?: StringNullableFilter;

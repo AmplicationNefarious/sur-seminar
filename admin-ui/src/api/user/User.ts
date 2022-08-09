@@ -3,7 +3,7 @@ import { Apartment } from "../apartment/Apartment";
 export type User = {
   apartments?: Array<Apartment>;
   createdAt: Date;
-  email: string | null;
+  email: string;
   id: string;
   nameSurname: string | null;
   phoneNumber: string | null;

@@ -63,7 +63,6 @@ class CheckOrderByInput {
   })
   paid?: SortOrder;
 
-
   @ApiProperty({
     required: false,
     enum: ["asc", "desc"],
