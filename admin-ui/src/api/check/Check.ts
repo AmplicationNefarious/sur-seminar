@@ -1,4 +1,5 @@
 import { Reservation } from "../reservation/Reservation";
+
 export type Check = {
   amount: number | null;
   createdAt: Date;

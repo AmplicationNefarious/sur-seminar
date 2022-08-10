@@ -1,5 +1,3 @@
-import { ApartmentCreateNestedManyWithoutUsersInput } from "./ApartmentCreateNestedManyWithoutUsersInput";
-
 export type UserCreateInput = {
   email: string;
   nameSurname?: string | null;

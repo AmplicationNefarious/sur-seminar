@@ -1,4 +1,3 @@
-import { ApartmentListRelationFilter } from "../apartment/ApartmentListRelationFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 
