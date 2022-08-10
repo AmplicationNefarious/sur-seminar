@@ -25,6 +25,10 @@ import { RenterList } from "./renter/RenterList";
 import { RenterCreate } from "./renter/RenterCreate";
 import { RenterEdit } from "./renter/RenterEdit";
 import { RenterShow } from "./renter/RenterShow";
+import { NestoList } from "./nesto/NestoList";
+import { NestoCreate } from "./nesto/NestoCreate";
+import { NestoEdit } from "./nesto/NestoEdit";
+import { NestoShow } from "./nesto/NestoShow";
 import { httpAuthProvider } from "./auth-provider/ra-auth-http";
 
 const App = (): React.ReactElement => {
@@ -85,6 +89,13 @@ const App = (): React.ReactElement => {
           edit={RenterEdit}
           create={RenterCreate}
           show={RenterShow}
+        />
+        <Resource
+          name="Nesto"
+          list={NestoList}
+          edit={NestoEdit}
+          create={NestoCreate}
+          show={NestoShow}
         />
       </Admin>
     </div>

@@ -6,6 +6,7 @@ import { ApartmentModule } from "./apartment/apartment.module";
 import { ReservationModule } from "./reservation/reservation.module";
 import { CheckModule } from "./check/check.module";
 import { RenterModule } from "./renter/renter.module";
+import { NestoModule } from "./nesto/nesto.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
@@ -23,6 +24,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     ReservationModule,
     CheckModule,
     RenterModule,
+    NestoModule,
     ACLModule,
     AuthModule,
     HealthModule,
