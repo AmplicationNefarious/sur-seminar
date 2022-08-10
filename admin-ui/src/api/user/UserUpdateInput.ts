@@ -1,5 +1,3 @@
-import { ApartmentUpdateManyWithoutUsersInput } from "./ApartmentUpdateManyWithoutUsersInput";
-
 export type UserUpdateInput = {
   email?: string;
   nameSurname?: string | null;

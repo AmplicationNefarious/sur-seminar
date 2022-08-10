@@ -1,7 +1,4 @@
-import { Apartment } from "../apartment/Apartment";
-
 export type User = {
-  apartments?: Array<Apartment>;
   createdAt: Date;
   email: string;
   id: string;

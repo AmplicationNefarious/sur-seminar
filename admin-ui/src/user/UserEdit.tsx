@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import {
   Edit,
   SimpleForm,
@@ -8,8 +7,6 @@ import {
   PasswordInput,
   SelectArrayInput,
 } from "react-admin";
-
-import { ApartmentTitle } from "../apartment/ApartmentTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserEdit = (props: EditProps): React.ReactElement => {
