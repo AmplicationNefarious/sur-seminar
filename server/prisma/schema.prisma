@@ -64,3 +64,9 @@ model Renter {
   updatedAt   DateTime    @updatedAt
   username    String
 }
+
+model Nesto {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
