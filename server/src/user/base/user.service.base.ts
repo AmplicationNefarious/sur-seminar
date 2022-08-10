@@ -72,14 +72,4 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findApartments(
-    parentId: string,
-    args: Prisma.ApartmentFindManyArgs
-  ): Promise<Apartment[]> {
-    return this.prisma.user
-      .findUnique({
-        where: { id: parentId },
-      })
-      .apartments(args);
-  }
 }
