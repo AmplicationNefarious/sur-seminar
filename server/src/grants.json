@@ -66,6 +66,12 @@
     "attributes": "*"
   },
   {
+    "role": "admin",
+    "resource": "User",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
     "resource": "User",
     "action": "delete:any",
@@ -495,12 +501,6 @@
     "role": "admin",
     "resource": "Renter",
     "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "renter",
-    "resource": "Renter",
-    "action": "create:any",
     "attributes": "*"
   },
   {

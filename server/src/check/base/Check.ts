@@ -57,6 +57,7 @@ class Check {
   @ValidateNested()
   @Type(() => Reservation)
   idReservation?: Reservation;
+
   @ApiProperty({
     required: false,
     type: Boolean,

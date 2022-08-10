@@ -9,7 +9,6 @@ import {
   SelectArrayInput,
 } from "react-admin";
 
-import { ApartmentTitle } from "../apartment/ApartmentTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
