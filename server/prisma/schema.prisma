@@ -23,20 +23,22 @@ model Apartment {
   id           String        @id @default(cuid())
   name         String
   price        Float
+  renter       Renter?       @relation(fields: [renterId], references: [id])
+  renterId     String?
   reservations Reservation[]
   updatedAt    DateTime      @updatedAt
 }
 
 model Reservation {
+  apartment        Apartment? @relation(fields: [apartmentId], references: [id])
+  apartmentId      String?
   check            Check?
   clientEmail      String
-  createdAt        DateTime  @default(now())
+  createdAt        DateTime   @default(now())
   endReservation   DateTime?
-  id               String    @id @default(cuid())
-  idApartment      Apartment @relation(fields: [idApartmentId], references: [id])
-  idApartmentId    String
+  id               String     @id @default(cuid())
   startReservation DateTime
-  updatedAt        DateTime  @updatedAt
+  updatedAt        DateTime   @updatedAt
 }
 
 model Check {
@@ -50,10 +52,11 @@ model Check {
 }
 
 model Renter {
-  createdAt   DateTime @default(now())
+  apartments  Apartment[]
+  createdAt   DateTime    @default(now())
   email       String
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   nameSurname String
   phoneNumber String?
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime    @updatedAt
 }

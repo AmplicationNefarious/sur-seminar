@@ -6,10 +6,13 @@ import {
   CreateProps,
   TextInput,
   NumberInput,
+  ReferenceInput,
+  SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
 
+import { RenterTitle } from "../renter/RenterTitle";
 import { ReservationTitle } from "../reservation/ReservationTitle";
 
 export const ApartmentCreate = (props: CreateProps): React.ReactElement => {
@@ -20,6 +23,9 @@ export const ApartmentCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Description" multiline source="description" />
         <TextInput label="Name" source="name" />
         <NumberInput label="Price per night" source="price" />
+        <ReferenceInput source="renter.id" reference="Renter" label="Renter">
+          <SelectInput optionText={RenterTitle} />
+        </ReferenceInput>
         <ReferenceArrayInput
           source="reservations"
           reference="Reservation"

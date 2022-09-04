@@ -50,7 +50,15 @@ export class ApartmentControllerBase {
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(@common.Body() data: ApartmentCreateInput): Promise<Apartment> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        renter: data.renter
+          ? {
+              connect: data.renter,
+            }
+          : undefined,
+      },
       select: {
         address: true,
         createdAt: true,
@@ -58,6 +66,13 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -79,6 +94,13 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -101,6 +123,13 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -129,7 +158,15 @@ export class ApartmentControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          renter: data.renter
+            ? {
+                connect: data.renter,
+              }
+            : undefined,
+        },
         select: {
           address: true,
           createdAt: true,
@@ -137,6 +174,13 @@ export class ApartmentControllerBase {
           id: true,
           name: true,
           price: true,
+
+          renter: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -172,6 +216,13 @@ export class ApartmentControllerBase {
           id: true,
           name: true,
           price: true,
+
+          renter: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -201,6 +252,12 @@ export class ApartmentControllerBase {
     const results = await this.service.findReservations(params.id, {
       ...query,
       select: {
+        apartment: {
+          select: {
+            id: true,
+          },
+        },
+
         check: {
           select: {
             id: true,
@@ -211,13 +268,6 @@ export class ApartmentControllerBase {
         createdAt: true,
         endReservation: true,
         id: true,
-
-        idApartment: {
-          select: {
-            id: true,
-          },
-        },
-
         startReservation: true,
         updatedAt: true,
       },

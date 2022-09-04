@@ -51,17 +51,25 @@ export class ReservationControllerBase {
       data: {
         ...data,
 
+        apartment: data.apartment
+          ? {
+              connect: data.apartment,
+            }
+          : undefined,
+
         check: data.check
           ? {
               connect: data.check,
             }
           : undefined,
-
-        idApartment: {
-          connect: data.idApartment,
-        },
       },
       select: {
+        apartment: {
+          select: {
+            id: true,
+          },
+        },
+
         check: {
           select: {
             id: true,
@@ -72,13 +80,6 @@ export class ReservationControllerBase {
         createdAt: true,
         endReservation: true,
         id: true,
-
-        idApartment: {
-          select: {
-            id: true,
-          },
-        },
-
         startReservation: true,
         updatedAt: true,
       },
@@ -100,6 +101,12 @@ export class ReservationControllerBase {
     return this.service.findMany({
       ...args,
       select: {
+        apartment: {
+          select: {
+            id: true,
+          },
+        },
+
         check: {
           select: {
             id: true,
@@ -110,13 +117,6 @@ export class ReservationControllerBase {
         createdAt: true,
         endReservation: true,
         id: true,
-
-        idApartment: {
-          select: {
-            id: true,
-          },
-        },
-
         startReservation: true,
         updatedAt: true,
       },
@@ -139,6 +139,12 @@ export class ReservationControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
+        apartment: {
+          select: {
+            id: true,
+          },
+        },
+
         check: {
           select: {
             id: true,
@@ -149,13 +155,6 @@ export class ReservationControllerBase {
         createdAt: true,
         endReservation: true,
         id: true,
-
-        idApartment: {
-          select: {
-            id: true,
-          },
-        },
-
         startReservation: true,
         updatedAt: true,
       },
@@ -188,17 +187,25 @@ export class ReservationControllerBase {
         data: {
           ...data,
 
+          apartment: data.apartment
+            ? {
+                connect: data.apartment,
+              }
+            : undefined,
+
           check: data.check
             ? {
                 connect: data.check,
               }
             : undefined,
-
-          idApartment: {
-            connect: data.idApartment,
-          },
         },
         select: {
+          apartment: {
+            select: {
+              id: true,
+            },
+          },
+
           check: {
             select: {
               id: true,
@@ -209,13 +216,6 @@ export class ReservationControllerBase {
           createdAt: true,
           endReservation: true,
           id: true,
-
-          idApartment: {
-            select: {
-              id: true,
-            },
-          },
-
           startReservation: true,
           updatedAt: true,
         },
@@ -246,6 +246,12 @@ export class ReservationControllerBase {
       return await this.service.delete({
         where: params,
         select: {
+          apartment: {
+            select: {
+              id: true,
+            },
+          },
+
           check: {
             select: {
               id: true,
@@ -256,13 +262,6 @@ export class ReservationControllerBase {
           createdAt: true,
           endReservation: true,
           id: true,
-
-          idApartment: {
-            select: {
-              id: true,
-            },
-          },
-
           startReservation: true,
           updatedAt: true,
         },

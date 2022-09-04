@@ -11,12 +11,24 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CheckWhereUniqueInput } from "../../check/base/CheckWhereUniqueInput";
+import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
 import { ValidateNested, IsOptional, IsString, IsDate } from "class-validator";
 import { Type } from "class-transformer";
-import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
+import { CheckWhereUniqueInput } from "../../check/base/CheckWhereUniqueInput";
 @InputType()
 class ReservationUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: () => ApartmentWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApartmentWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApartmentWhereUniqueInput, {
+    nullable: true,
+  })
+  apartment?: ApartmentWhereUniqueInput | null;
+
   @ApiProperty({
     required: false,
     type: () => CheckWhereUniqueInput,
@@ -50,18 +62,6 @@ class ReservationUpdateInput {
     nullable: true,
   })
   endReservation?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: () => ApartmentWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApartmentWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApartmentWhereUniqueInput, {
-    nullable: true,
-  })
-  idApartment?: ApartmentWhereUniqueInput;
 
   @ApiProperty({
     required: false,

@@ -21,12 +21,16 @@ import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RenterService } from "../renter.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { RenterCreateInput } from "./RenterCreateInput";
 import { RenterWhereInput } from "./RenterWhereInput";
 import { RenterWhereUniqueInput } from "./RenterWhereUniqueInput";
 import { RenterFindManyArgs } from "./RenterFindManyArgs";
 import { RenterUpdateInput } from "./RenterUpdateInput";
 import { Renter } from "./Renter";
+import { ApartmentFindManyArgs } from "../../apartment/base/ApartmentFindManyArgs";
+import { Apartment } from "../../apartment/base/Apartment";
+import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
 @swagger.ApiBasicAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
 export class RenterControllerBase {
@@ -184,5 +188,106 @@ export class RenterControllerBase {
       }
       throw error;
     }
+  }
+
+  @Public()
+  @common.Get("/:id/apartments")
+  @ApiNestedQuery(ApartmentFindManyArgs)
+  async findManyApartments(
+    @common.Req() request: Request,
+    @common.Param() params: RenterWhereUniqueInput
+  ): Promise<Apartment[]> {
+    const query = plainToClass(ApartmentFindManyArgs, request.query);
+    const results = await this.service.findApartments(params.id, {
+      ...query,
+      select: {
+        address: true,
+        createdAt: true,
+        description: true,
+        id: true,
+        name: true,
+        price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "Renter",
+    action: "update",
+    possession: "any",
+  })
+  @common.Post("/:id/apartments")
+  async connectApartments(
+    @common.Param() params: RenterWhereUniqueInput,
+    @common.Body() body: ApartmentWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      apartments: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "Renter",
+    action: "update",
+    possession: "any",
+  })
+  @common.Patch("/:id/apartments")
+  async updateApartments(
+    @common.Param() params: RenterWhereUniqueInput,
+    @common.Body() body: ApartmentWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      apartments: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @nestAccessControl.UseRoles({
+    resource: "Renter",
+    action: "update",
+    possession: "any",
+  })
+  @common.Delete("/:id/apartments")
+  async disconnectApartments(
+    @common.Param() params: RenterWhereUniqueInput,
+    @common.Body() body: ApartmentWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      apartments: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

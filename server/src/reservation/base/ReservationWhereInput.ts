@@ -11,15 +11,27 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CheckWhereUniqueInput } from "../../check/base/CheckWhereUniqueInput";
+import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { CheckWhereUniqueInput } from "../../check/base/CheckWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
-import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
 @InputType()
 class ReservationWhereInput {
+  @ApiProperty({
+    required: false,
+    type: () => ApartmentWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ApartmentWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ApartmentWhereUniqueInput, {
+    nullable: true,
+  })
+  apartment?: ApartmentWhereUniqueInput;
+
   @ApiProperty({
     required: false,
     type: () => CheckWhereUniqueInput,
@@ -64,18 +76,6 @@ class ReservationWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => ApartmentWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => ApartmentWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ApartmentWhereUniqueInput, {
-    nullable: true,
-  })
-  idApartment?: ApartmentWhereUniqueInput;
 
   @ApiProperty({
     required: false,

@@ -13,9 +13,11 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { FloatFilter } from "../../util/FloatFilter";
+import { RenterWhereUniqueInput } from "../../renter/base/RenterWhereUniqueInput";
+import { ReservationListRelationFilter } from "../../reservation/base/ReservationListRelationFilter";
 @InputType()
 class ApartmentWhereInput {
   @ApiProperty({
@@ -72,5 +74,29 @@ class ApartmentWhereInput {
     nullable: true,
   })
   price?: FloatFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => RenterWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => RenterWhereUniqueInput)
+  @IsOptional()
+  @Field(() => RenterWhereUniqueInput, {
+    nullable: true,
+  })
+  renter?: RenterWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => ReservationListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => ReservationListRelationFilter)
+  @IsOptional()
+  @Field(() => ReservationListRelationFilter, {
+    nullable: true,
+  })
+  reservations?: ReservationListRelationFilter;
 }
 export { ApartmentWhereInput };
