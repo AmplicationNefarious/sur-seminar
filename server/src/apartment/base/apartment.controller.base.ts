@@ -20,6 +20,7 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { ApartmentService } from "../apartment.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { ApartmentCreateInput } from "./ApartmentCreateInput";
 import { ApartmentWhereInput } from "./ApartmentWhereInput";
@@ -27,9 +28,6 @@ import { ApartmentWhereUniqueInput } from "./ApartmentWhereUniqueInput";
 import { ApartmentFindManyArgs } from "./ApartmentFindManyArgs";
 import { ApartmentUpdateInput } from "./ApartmentUpdateInput";
 import { Apartment } from "./Apartment";
-import { RenterFindManyArgs } from "../../renter/base/RenterFindManyArgs";
-import { Renter } from "../../renter/base/Renter";
-import { RenterWhereUniqueInput } from "../../renter/base/RenterWhereUniqueInput";
 import { ReservationFindManyArgs } from "../../reservation/base/ReservationFindManyArgs";
 import { Reservation } from "../../reservation/base/Reservation";
 import { ReservationWhereUniqueInput } from "../../reservation/base/ReservationWhereUniqueInput";
@@ -52,7 +50,15 @@ export class ApartmentControllerBase {
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(@common.Body() data: ApartmentCreateInput): Promise<Apartment> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        renter: data.renter
+          ? {
+              connect: data.renter,
+            }
+          : undefined,
+      },
       select: {
         address: true,
         createdAt: true,
@@ -60,17 +66,19 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "any",
-  })
+  @Public()
   @common.Get()
   @swagger.ApiOkResponse({ type: [Apartment] })
   @swagger.ApiForbiddenResponse()
@@ -86,17 +94,19 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "own",
-  })
+  @Public()
   @common.Get("/:id")
   @swagger.ApiOkResponse({ type: Apartment })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
@@ -113,6 +123,13 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -141,7 +158,15 @@ export class ApartmentControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          renter: data.renter
+            ? {
+                connect: data.renter,
+              }
+            : undefined,
+        },
         select: {
           address: true,
           createdAt: true,
@@ -149,6 +174,13 @@ export class ApartmentControllerBase {
           id: true,
           name: true,
           price: true,
+
+          renter: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -184,6 +216,13 @@ export class ApartmentControllerBase {
           id: true,
           name: true,
           price: true,
+
+          renter: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -195,106 +234,6 @@ export class ApartmentControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Renter",
-    action: "read",
-    possession: "any",
-  })
-  @common.Get("/:id/renters")
-  @ApiNestedQuery(RenterFindManyArgs)
-  async findManyRenters(
-    @common.Req() request: Request,
-    @common.Param() params: ApartmentWhereUniqueInput
-  ): Promise<Renter[]> {
-    const query = plainToClass(RenterFindManyArgs, request.query);
-    const results = await this.service.findRenters(params.id, {
-      ...query,
-      select: {
-        createdAt: true,
-        email: true,
-        id: true,
-        nameSurname: true,
-        password: true,
-        phoneNumber: true,
-        updatedAt: true,
-        username: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "update",
-    possession: "any",
-  })
-  @common.Post("/:id/renters")
-  async connectRenters(
-    @common.Param() params: ApartmentWhereUniqueInput,
-    @common.Body() body: RenterWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      renters: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "update",
-    possession: "any",
-  })
-  @common.Patch("/:id/renters")
-  async updateRenters(
-    @common.Param() params: ApartmentWhereUniqueInput,
-    @common.Body() body: RenterWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      renters: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "update",
-    possession: "any",
-  })
-  @common.Delete("/:id/renters")
-  async disconnectRenters(
-    @common.Param() params: ApartmentWhereUniqueInput,
-    @common.Body() body: RenterWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      renters: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
@@ -319,9 +258,8 @@ export class ApartmentControllerBase {
           },
         },
 
+        clientEmail: true,
         createdAt: true,
-        daysOfReservation: true,
-        emailOfUser: true,
         endReservation: true,
         id: true,
 
@@ -331,6 +269,7 @@ export class ApartmentControllerBase {
           },
         },
 
+        startReservation: true,
         updatedAt: true,
       },
     });

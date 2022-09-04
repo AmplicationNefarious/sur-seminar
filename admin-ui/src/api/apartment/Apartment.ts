@@ -8,7 +8,7 @@ export type Apartment = {
   id: string;
   name: string;
   price: number;
-  renters?: Array<Renter>;
+  renter?: Renter | null;
   reservations?: Array<Reservation>;
   updatedAt: Date;
 };

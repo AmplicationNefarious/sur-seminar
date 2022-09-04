@@ -14,11 +14,10 @@ import { ApiProperty } from "@nestjs/swagger";
 import { CheckWhereUniqueInput } from "../../check/base/CheckWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { ApartmentWhereUniqueInput } from "../../apartment/base/ApartmentWhereUniqueInput";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
 @InputType()
 class ReservationWhereInput {
   @ApiProperty({
@@ -35,25 +34,14 @@ class ReservationWhereInput {
 
   @ApiProperty({
     required: false,
-    type: DateTimeFilter,
+    type: StringFilter,
   })
-  @Type(() => DateTimeFilter)
+  @Type(() => StringFilter)
   @IsOptional()
-  @Field(() => DateTimeFilter, {
+  @Field(() => StringFilter, {
     nullable: true,
   })
-  daysOfReservation?: DateTimeFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  emailOfUser?: StringNullableFilter;
+  clientEmail?: StringFilter;
 
   @ApiProperty({
     required: false,
@@ -88,5 +76,16 @@ class ReservationWhereInput {
     nullable: true,
   })
   idApartment?: ApartmentWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: DateTimeFilter,
+  })
+  @Type(() => DateTimeFilter)
+  @IsOptional()
+  @Field(() => DateTimeFilter, {
+    nullable: true,
+  })
+  startReservation?: DateTimeFilter;
 }
 export { ReservationWhereInput };

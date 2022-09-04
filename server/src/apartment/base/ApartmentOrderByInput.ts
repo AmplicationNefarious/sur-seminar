@@ -79,6 +79,15 @@ class ApartmentOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  renterId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   updatedAt?: SortOrder;
 }
 

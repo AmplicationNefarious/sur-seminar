@@ -19,6 +19,7 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { CreateRenterArgs } from "./CreateRenterArgs";
 import { UpdateRenterArgs } from "./UpdateRenterArgs";
 import { DeleteRenterArgs } from "./DeleteRenterArgs";
@@ -144,13 +145,8 @@ export class RenterResolverBase {
     }
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.ResolveField(() => [Apartment])
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "any",
-  })
   async apartments(
     @graphql.Parent() parent: Renter,
     @graphql.Args() args: ApartmentFindManyArgs

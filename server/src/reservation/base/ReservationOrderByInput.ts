@@ -34,25 +34,16 @@ class ReservationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  clientEmail?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   createdAt?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  daysOfReservation?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  emailOfUser?: SortOrder;
 
   @ApiProperty({
     required: false,
@@ -80,6 +71,15 @@ class ReservationOrderByInput {
     nullable: true,
   })
   idApartmentId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
+  startReservation?: SortOrder;
 
   @ApiProperty({
     required: false,
