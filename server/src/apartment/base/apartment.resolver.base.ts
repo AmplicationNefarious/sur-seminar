@@ -28,6 +28,7 @@ import { ApartmentFindUniqueArgs } from "./ApartmentFindUniqueArgs";
 import { Apartment } from "./Apartment";
 import { ReservationFindManyArgs } from "../../reservation/base/ReservationFindManyArgs";
 import { Reservation } from "../../reservation/base/Reservation";
+import { Renter } from "../../renter/base/Renter";
 import { ApartmentService } from "../apartment.service";
 
 @graphql.Resolver(() => Apartment)
@@ -85,7 +86,15 @@ export class ApartmentResolverBase {
   ): Promise<Apartment> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        renter: args.data.renter
+          ? {
+              connect: args.data.renter,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -102,7 +111,15 @@ export class ApartmentResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          renter: args.data.renter
+            ? {
+                connect: args.data.renter,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -153,5 +170,21 @@ export class ApartmentResolverBase {
     }
 
     return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Renter, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Renter",
+    action: "read",
+    possession: "any",
+  })
+  async renter(@graphql.Parent() parent: Apartment): Promise<Renter | null> {
+    const result = await this.service.getRenter(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

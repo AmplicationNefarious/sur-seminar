@@ -19,12 +19,15 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { CreateRenterArgs } from "./CreateRenterArgs";
 import { UpdateRenterArgs } from "./UpdateRenterArgs";
 import { DeleteRenterArgs } from "./DeleteRenterArgs";
 import { RenterFindManyArgs } from "./RenterFindManyArgs";
 import { RenterFindUniqueArgs } from "./RenterFindUniqueArgs";
 import { Renter } from "./Renter";
+import { ApartmentFindManyArgs } from "../../apartment/base/ApartmentFindManyArgs";
+import { Apartment } from "../../apartment/base/Apartment";
 import { RenterService } from "../renter.service";
 
 @graphql.Resolver(() => Renter)
@@ -140,5 +143,20 @@ export class RenterResolverBase {
       }
       throw error;
     }
+  }
+
+  @Public()
+  @graphql.ResolveField(() => [Apartment])
+  async apartments(
+    @graphql.Parent() parent: Renter,
+    @graphql.Args() args: ApartmentFindManyArgs
+  ): Promise<Apartment[]> {
+    const results = await this.service.findApartments(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }

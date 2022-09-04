@@ -25,6 +25,15 @@ class ReservationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  apartmentId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   checkId?: SortOrder;
 
   @ApiProperty({
@@ -62,15 +71,6 @@ class ReservationOrderByInput {
     nullable: true,
   })
   id?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  idApartmentId?: SortOrder;
 
   @ApiProperty({
     required: false,

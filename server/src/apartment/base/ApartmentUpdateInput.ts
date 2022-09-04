@@ -17,8 +17,9 @@ import {
   IsNumber,
   ValidateNested,
 } from "class-validator";
-import { ReservationUpdateManyWithoutApartmentsInput } from "./ReservationUpdateManyWithoutApartmentsInput";
+import { RenterWhereUniqueInput } from "../../renter/base/RenterWhereUniqueInput";
 import { Type } from "class-transformer";
+import { ReservationUpdateManyWithoutApartmentsInput } from "./ReservationUpdateManyWithoutApartmentsInput";
 @InputType()
 class ApartmentUpdateInput {
   @ApiProperty({
@@ -64,6 +65,18 @@ class ApartmentUpdateInput {
     nullable: true,
   })
   price?: number;
+
+  @ApiProperty({
+    required: false,
+    type: () => RenterWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => RenterWhereUniqueInput)
+  @IsOptional()
+  @Field(() => RenterWhereUniqueInput, {
+    nullable: true,
+  })
+  renter?: RenterWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

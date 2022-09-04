@@ -11,9 +11,23 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
+import { ApartmentUpdateManyWithoutRentersInput } from "./ApartmentUpdateManyWithoutRentersInput";
+import { ValidateNested, IsOptional, IsString } from "class-validator";
+import { Type } from "class-transformer";
 @InputType()
 class RenterUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: () => ApartmentUpdateManyWithoutRentersInput,
+  })
+  @ValidateNested()
+  @Type(() => ApartmentUpdateManyWithoutRentersInput)
+  @IsOptional()
+  @Field(() => ApartmentUpdateManyWithoutRentersInput, {
+    nullable: true,
+  })
+  apartments?: ApartmentUpdateManyWithoutRentersInput;
+
   @ApiProperty({
     required: false,
     type: String,

@@ -26,8 +26,8 @@ import { DeleteReservationArgs } from "./DeleteReservationArgs";
 import { ReservationFindManyArgs } from "./ReservationFindManyArgs";
 import { ReservationFindUniqueArgs } from "./ReservationFindUniqueArgs";
 import { Reservation } from "./Reservation";
-import { Check } from "../../check/base/Check";
 import { Apartment } from "../../apartment/base/Apartment";
+import { Check } from "../../check/base/Check";
 import { ReservationService } from "../reservation.service";
 
 @graphql.Resolver(() => Reservation)
@@ -102,15 +102,17 @@ export class ReservationResolverBase {
       data: {
         ...args.data,
 
+        apartment: args.data.apartment
+          ? {
+              connect: args.data.apartment,
+            }
+          : undefined,
+
         check: args.data.check
           ? {
               connect: args.data.check,
             }
           : undefined,
-
-        idApartment: {
-          connect: args.data.idApartment,
-        },
       },
     });
   }
@@ -131,15 +133,17 @@ export class ReservationResolverBase {
         data: {
           ...args.data,
 
+          apartment: args.data.apartment
+            ? {
+                connect: args.data.apartment,
+              }
+            : undefined,
+
           check: args.data.check
             ? {
                 connect: args.data.check,
               }
             : undefined,
-
-          idApartment: {
-            connect: args.data.idApartment,
-          },
         },
       });
     } catch (error) {
@@ -173,6 +177,19 @@ export class ReservationResolverBase {
     }
   }
 
+  @Public()
+  @graphql.ResolveField(() => Apartment, { nullable: true })
+  async apartment(
+    @graphql.Parent() parent: Reservation
+  ): Promise<Apartment | null> {
+    const result = await this.service.getApartment(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => Check, { nullable: true })
   @nestAccessControl.UseRoles({
@@ -182,19 +199,6 @@ export class ReservationResolverBase {
   })
   async check(@graphql.Parent() parent: Reservation): Promise<Check | null> {
     const result = await this.service.getCheck(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @Public()
-  @graphql.ResolveField(() => Apartment, { nullable: true })
-  async idApartment(
-    @graphql.Parent() parent: Reservation
-  ): Promise<Apartment | null> {
-    const result = await this.service.getIdApartment(parent.id);
 
     if (!result) {
       return null;

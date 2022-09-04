@@ -10,18 +10,13 @@ import {
   DateTimeInput,
 } from "react-admin";
 
-import { CheckTitle } from "../check/CheckTitle";
 import { ApartmentTitle } from "../apartment/ApartmentTitle";
+import { CheckTitle } from "../check/CheckTitle";
 
 export const ReservationCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput source="check.id" reference="Check" label="Check">
-          <SelectInput optionText={CheckTitle} />
-        </ReferenceInput>
-        <TextInput label="Client Email" source="clientEmail" type="email" />
-        <DateTimeInput label="End" source="endReservation" />
         <ReferenceInput
           source="apartment.id"
           reference="Apartment"
@@ -29,6 +24,11 @@ export const ReservationCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={ApartmentTitle} />
         </ReferenceInput>
+        <ReferenceInput source="check.id" reference="Check" label="Check">
+          <SelectInput optionText={CheckTitle} />
+        </ReferenceInput>
+        <TextInput label="Client Email" source="clientEmail" type="email" />
+        <DateTimeInput label="End" source="endReservation" />
         <DateTimeInput label="Start" source="startReservation" />
       </SimpleForm>
     </Create>
