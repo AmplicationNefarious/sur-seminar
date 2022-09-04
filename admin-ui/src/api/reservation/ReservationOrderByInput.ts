@@ -2,11 +2,11 @@ import { SortOrder } from "../../util/SortOrder";
 
 export type ReservationOrderByInput = {
   checkId?: SortOrder;
+  clientEmail?: SortOrder;
   createdAt?: SortOrder;
-  daysOfReservation?: SortOrder;
-  emailOfUser?: SortOrder;
   endReservation?: SortOrder;
   id?: SortOrder;
   idApartmentId?: SortOrder;
+  startReservation?: SortOrder;
   updatedAt?: SortOrder;
 };

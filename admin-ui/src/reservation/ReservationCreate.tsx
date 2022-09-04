@@ -6,8 +6,8 @@ import {
   CreateProps,
   ReferenceInput,
   SelectInput,
-  DateTimeInput,
   TextInput,
+  DateTimeInput,
 } from "react-admin";
 
 import { CheckTitle } from "../check/CheckTitle";
@@ -20,16 +20,16 @@ export const ReservationCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="check.id" reference="Check" label="Check">
           <SelectInput optionText={CheckTitle} />
         </ReferenceInput>
-        <DateTimeInput label="StartReservation" source="daysOfReservation" />
-        <TextInput label="EmailOfUser" source="emailOfUser" type="email" />
-        <DateTimeInput label="EndReservation" source="endReservation" />
+        <TextInput label="Client Email" source="clientEmail" type="email" />
+        <DateTimeInput label="End" source="endReservation" />
         <ReferenceInput
           source="apartment.id"
           reference="Apartment"
-          label="ID_Apartment"
+          label="Apartment"
         >
           <SelectInput optionText={ApartmentTitle} />
         </ReferenceInput>
+        <DateTimeInput label="Start" source="startReservation" />
       </SimpleForm>
     </Create>
   );

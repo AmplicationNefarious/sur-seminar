@@ -19,6 +19,7 @@ import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { CreateReservationArgs } from "./CreateReservationArgs";
 import { UpdateReservationArgs } from "./UpdateReservationArgs";
 import { DeleteReservationArgs } from "./DeleteReservationArgs";
@@ -188,13 +189,8 @@ export class ReservationResolverBase {
     return result;
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.ResolveField(() => Apartment, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "any",
-  })
   async idApartment(
     @graphql.Parent() parent: Reservation
   ): Promise<Apartment | null> {

@@ -1,4 +1,4 @@
-import { RenterUpdateManyWithoutApartmentsInput } from "./RenterUpdateManyWithoutApartmentsInput";
+import { RenterWhereUniqueInput } from "../renter/RenterWhereUniqueInput";
 import { ReservationUpdateManyWithoutApartmentsInput } from "./ReservationUpdateManyWithoutApartmentsInput";
 
 export type ApartmentUpdateInput = {
@@ -6,6 +6,6 @@ export type ApartmentUpdateInput = {
   description?: string | null;
   name?: string;
   price?: number;
-  renters?: RenterUpdateManyWithoutApartmentsInput;
+  renter?: RenterWhereUniqueInput | null;
   reservations?: ReservationUpdateManyWithoutApartmentsInput;
 };

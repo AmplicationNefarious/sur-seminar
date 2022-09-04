@@ -17,18 +17,18 @@ import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
+import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { CreateApartmentArgs } from "./CreateApartmentArgs";
 import { UpdateApartmentArgs } from "./UpdateApartmentArgs";
 import { DeleteApartmentArgs } from "./DeleteApartmentArgs";
 import { ApartmentFindManyArgs } from "./ApartmentFindManyArgs";
 import { ApartmentFindUniqueArgs } from "./ApartmentFindUniqueArgs";
 import { Apartment } from "./Apartment";
-import { RenterFindManyArgs } from "../../renter/base/RenterFindManyArgs";
-import { Renter } from "../../renter/base/Renter";
 import { ReservationFindManyArgs } from "../../reservation/base/ReservationFindManyArgs";
 import { Reservation } from "../../reservation/base/Reservation";
+import { Renter } from "../../renter/base/Renter";
 import { ApartmentService } from "../apartment.service";
 
 @graphql.Resolver(() => Apartment)
@@ -39,12 +39,8 @@ export class ApartmentResolverBase {
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
+  @Public()
   @graphql.Query(() => MetaQueryPayload)
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "any",
-  })
   async _apartmentsMeta(
     @graphql.Args() args: ApartmentFindManyArgs
   ): Promise<MetaQueryPayload> {
@@ -58,26 +54,16 @@ export class ApartmentResolverBase {
     };
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.Query(() => [Apartment])
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "any",
-  })
   async apartments(
     @graphql.Args() args: ApartmentFindManyArgs
   ): Promise<Apartment[]> {
     return this.service.findMany(args);
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @Public()
   @graphql.Query(() => Apartment, { nullable: true })
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "own",
-  })
   async apartment(
     @graphql.Args() args: ApartmentFindUniqueArgs
   ): Promise<Apartment | null> {
@@ -100,7 +86,15 @@ export class ApartmentResolverBase {
   ): Promise<Apartment> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        renter: args.data.renter
+          ? {
+              connect: args.data.renter,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -117,7 +111,15 @@ export class ApartmentResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          renter: args.data.renter
+            ? {
+                connect: args.data.renter,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -151,26 +153,6 @@ export class ApartmentResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Renter])
-  @nestAccessControl.UseRoles({
-    resource: "Renter",
-    action: "read",
-    possession: "any",
-  })
-  async renters(
-    @graphql.Parent() parent: Apartment,
-    @graphql.Args() args: RenterFindManyArgs
-  ): Promise<Renter[]> {
-    const results = await this.service.findRenters(parent.id, args);
-
-    if (!results) {
-      return [];
-    }
-
-    return results;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => [Reservation])
   @nestAccessControl.UseRoles({
     resource: "Reservation",
@@ -188,5 +170,21 @@ export class ApartmentResolverBase {
     }
 
     return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Renter, { nullable: true })
+  @nestAccessControl.UseRoles({
+    resource: "Renter",
+    action: "read",
+    possession: "any",
+  })
+  async renter(@graphql.Parent() parent: Apartment): Promise<Renter | null> {
+    const result = await this.service.getRenter(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }
