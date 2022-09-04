@@ -1,0 +1,437 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Apartment {
+  address: String!
+  createdAt: DateTime!
+  description: String
+  id: String!
+  name: String!
+  price: Float!
+  renter: Renter
+  reservations(orderBy: [ReservationOrderByInput!], skip: Float, take: Float, where: ReservationWhereInput): [Reservation!]!
+  updatedAt: DateTime!
+}
+
+input ApartmentCreateInput {
+  address: String!
+  description: String
+  name: String!
+  price: Float!
+  renter: RenterWhereUniqueInput
+  reservations: ReservationCreateNestedManyWithoutApartmentsInput
+}
+
+input ApartmentCreateNestedManyWithoutRentersInput {
+  connect: [ApartmentWhereUniqueInput!]
+}
+
+input ApartmentListRelationFilter {
+  every: ApartmentWhereInput
+  none: ApartmentWhereInput
+  some: ApartmentWhereInput
+}
+
+input ApartmentOrderByInput {
+  address: SortOrder
+  createdAt: SortOrder
+  description: SortOrder
+  id: SortOrder
+  name: SortOrder
+  price: SortOrder
+  renterId: SortOrder
+  updatedAt: SortOrder
+}
+
+input ApartmentUpdateInput {
+  address: String
+  description: String
+  name: String
+  price: Float
+  renter: RenterWhereUniqueInput
+  reservations: ReservationUpdateManyWithoutApartmentsInput
+}
+
+input ApartmentUpdateManyWithoutRentersInput {
+  connect: [ApartmentWhereUniqueInput!]
+  disconnect: [ApartmentWhereUniqueInput!]
+  set: [ApartmentWhereUniqueInput!]
+}
+
+input ApartmentWhereInput {
+  address: StringFilter
+  description: StringNullableFilter
+  id: StringFilter
+  name: StringFilter
+  price: FloatFilter
+  renter: RenterWhereUniqueInput
+  reservations: ReservationListRelationFilter
+}
+
+input ApartmentWhereUniqueInput {
+  id: String!
+}
+
+input BooleanNullableFilter {
+  equals: Boolean
+  not: Boolean
+}
+
+type Check {
+  amount: Float
+  createdAt: DateTime!
+  id: String!
+  idReservation: Reservation
+  paid: Boolean
+  updatedAt: DateTime!
+}
+
+input CheckCreateInput {
+  amount: Float
+  idReservation: ReservationWhereUniqueInput!
+  paid: Boolean
+}
+
+input CheckOrderByInput {
+  amount: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  idReservationId: SortOrder
+  paid: SortOrder
+  updatedAt: SortOrder
+}
+
+input CheckUpdateInput {
+  amount: Float
+  idReservation: ReservationWhereUniqueInput
+  paid: Boolean
+}
+
+input CheckWhereInput {
+  amount: FloatNullableFilter
+  id: StringFilter
+  idReservation: ReservationWhereUniqueInput
+  paid: BooleanNullableFilter
+}
+
+input CheckWhereUniqueInput {
+  id: String!
+}
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+input FloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: Float
+  notIn: [Float!]
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createApartment(data: ApartmentCreateInput!): Apartment!
+  createCheck(data: CheckCreateInput!): Check!
+  createRenter(data: RenterCreateInput!): Renter!
+  createReservation(data: ReservationCreateInput!): Reservation!
+  createUser(data: UserCreateInput!): User!
+  deleteApartment(where: ApartmentWhereUniqueInput!): Apartment!
+  deleteCheck(where: CheckWhereUniqueInput!): Check!
+  deleteRenter(where: RenterWhereUniqueInput!): Renter!
+  deleteReservation(where: ReservationWhereUniqueInput!): Reservation!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateApartment(data: ApartmentUpdateInput!, where: ApartmentWhereUniqueInput!): Apartment!
+  updateCheck(data: CheckUpdateInput!, where: CheckWhereUniqueInput!): Check!
+  updateRenter(data: RenterUpdateInput!, where: RenterWhereUniqueInput!): Renter!
+  updateReservation(data: ReservationUpdateInput!, where: ReservationWhereUniqueInput!): Reservation!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Query {
+  _apartmentsMeta(orderBy: [ApartmentOrderByInput!], skip: Float, take: Float, where: ApartmentWhereInput): MetaQueryPayload!
+  _checksMeta(orderBy: [CheckOrderByInput!], skip: Float, take: Float, where: CheckWhereInput): MetaQueryPayload!
+  _rentersMeta(orderBy: [RenterOrderByInput!], skip: Float, take: Float, where: RenterWhereInput): MetaQueryPayload!
+  _reservationsMeta(orderBy: [ReservationOrderByInput!], skip: Float, take: Float, where: ReservationWhereInput): MetaQueryPayload!
+  _usersMeta(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): MetaQueryPayload!
+  apartment(where: ApartmentWhereUniqueInput!): Apartment
+  apartments(orderBy: [ApartmentOrderByInput!], skip: Float, take: Float, where: ApartmentWhereInput): [Apartment!]!
+  check(where: CheckWhereUniqueInput!): Check
+  checks(orderBy: [CheckOrderByInput!], skip: Float, take: Float, where: CheckWhereInput): [Check!]!
+  renter(where: RenterWhereUniqueInput!): Renter
+  renters(orderBy: [RenterOrderByInput!], skip: Float, take: Float, where: RenterWhereInput): [Renter!]!
+  reservation(where: ReservationWhereUniqueInput!): Reservation
+  reservations(orderBy: [ReservationOrderByInput!], skip: Float, take: Float, where: ReservationWhereInput): [Reservation!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+type Renter {
+  apartments(orderBy: [ApartmentOrderByInput!], skip: Float, take: Float, where: ApartmentWhereInput): [Apartment!]!
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  nameSurname: String!
+  password: String!
+  phoneNumber: String
+  updatedAt: DateTime!
+  username: String!
+}
+
+input RenterCreateInput {
+  apartments: ApartmentCreateNestedManyWithoutRentersInput
+  email: String!
+  nameSurname: String!
+  password: String!
+  phoneNumber: String
+  username: String!
+}
+
+input RenterOrderByInput {
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  nameSurname: SortOrder
+  password: SortOrder
+  phoneNumber: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input RenterUpdateInput {
+  apartments: ApartmentUpdateManyWithoutRentersInput
+  email: String
+  nameSurname: String
+  password: String
+  phoneNumber: String
+  username: String
+}
+
+input RenterWhereInput {
+  apartments: ApartmentListRelationFilter
+  email: StringFilter
+  id: StringFilter
+  nameSurname: StringFilter
+  password: StringFilter
+  phoneNumber: StringNullableFilter
+  username: StringFilter
+}
+
+input RenterWhereUniqueInput {
+  id: String!
+}
+
+type Reservation {
+  check: Check
+  clientEmail: String!
+  createdAt: DateTime!
+  endReservation: DateTime
+  id: String!
+  idApartment: Apartment
+  startReservation: DateTime!
+  updatedAt: DateTime!
+}
+
+input ReservationCreateInput {
+  check: CheckWhereUniqueInput
+  clientEmail: String!
+  endReservation: DateTime
+  idApartment: ApartmentWhereUniqueInput!
+  startReservation: DateTime!
+}
+
+input ReservationCreateNestedManyWithoutApartmentsInput {
+  connect: [ReservationWhereUniqueInput!]
+}
+
+input ReservationListRelationFilter {
+  every: ReservationWhereInput
+  none: ReservationWhereInput
+  some: ReservationWhereInput
+}
+
+input ReservationOrderByInput {
+  checkId: SortOrder
+  clientEmail: SortOrder
+  createdAt: SortOrder
+  endReservation: SortOrder
+  id: SortOrder
+  idApartmentId: SortOrder
+  startReservation: SortOrder
+  updatedAt: SortOrder
+}
+
+input ReservationUpdateInput {
+  check: CheckWhereUniqueInput
+  clientEmail: String
+  endReservation: DateTime
+  idApartment: ApartmentWhereUniqueInput
+  startReservation: DateTime
+}
+
+input ReservationUpdateManyWithoutApartmentsInput {
+  connect: [ReservationWhereUniqueInput!]
+  disconnect: [ReservationWhereUniqueInput!]
+  set: [ReservationWhereUniqueInput!]
+}
+
+input ReservationWhereInput {
+  check: CheckWhereUniqueInput
+  clientEmail: StringFilter
+  endReservation: DateTimeNullableFilter
+  id: StringFilter
+  idApartment: ApartmentWhereUniqueInput
+  startReservation: DateTimeFilter
+}
+
+input ReservationWhereUniqueInput {
+  id: String!
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: String!
+  nameSurname: String
+  phoneNumber: String
+  roles: [String!]!
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  email: String!
+  nameSurname: String
+  password: String!
+  phoneNumber: String
+  roles: [String!]!
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  createdAt: SortOrder
+  email: SortOrder
+  id: SortOrder
+  nameSurname: SortOrder
+  password: SortOrder
+  phoneNumber: SortOrder
+  roles: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  email: String
+  nameSurname: String
+  password: String
+  phoneNumber: String
+  roles: [String!]
+  username: String
+}
+
+input UserWhereInput {
+  email: StringFilter
+  id: StringFilter
+  nameSurname: StringNullableFilter
+  phoneNumber: StringNullableFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
