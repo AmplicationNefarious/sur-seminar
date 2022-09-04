@@ -3,8 +3,8 @@ import { ApartmentWhereUniqueInput } from "../apartment/ApartmentWhereUniqueInpu
 
 export type ReservationUpdateInput = {
   check?: CheckWhereUniqueInput | null;
-  daysOfReservation?: Date;
-  emailOfUser?: string | null;
+  clientEmail?: string;
   endReservation?: Date | null;
   idApartment?: ApartmentWhereUniqueInput;
+  startReservation?: Date;
 };

@@ -6,6 +6,8 @@ import {
   CreateProps,
   TextInput,
   NumberInput,
+  ReferenceInput,
+  SelectInput,
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
@@ -21,14 +23,9 @@ export const ApartmentCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Description" multiline source="description" />
         <TextInput label="Name" source="name" />
         <NumberInput label="Price per night" source="price" />
-        <ReferenceArrayInput
-          source="renters"
-          reference="Renter"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={RenterTitle} />
-        </ReferenceArrayInput>
+        <ReferenceInput source="renter.id" reference="Renter" label="Renter">
+          <SelectInput optionText={RenterTitle} />
+        </ReferenceInput>
         <ReferenceArrayInput
           source="reservations"
           reference="Reservation"

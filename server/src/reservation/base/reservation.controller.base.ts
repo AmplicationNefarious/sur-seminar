@@ -68,9 +68,8 @@ export class ReservationControllerBase {
           },
         },
 
+        clientEmail: true,
         createdAt: true,
-        daysOfReservation: true,
-        emailOfUser: true,
         endReservation: true,
         id: true,
 
@@ -80,6 +79,7 @@ export class ReservationControllerBase {
           },
         },
 
+        startReservation: true,
         updatedAt: true,
       },
     });
@@ -106,9 +106,8 @@ export class ReservationControllerBase {
           },
         },
 
+        clientEmail: true,
         createdAt: true,
-        daysOfReservation: true,
-        emailOfUser: true,
         endReservation: true,
         id: true,
 
@@ -118,6 +117,7 @@ export class ReservationControllerBase {
           },
         },
 
+        startReservation: true,
         updatedAt: true,
       },
     });
@@ -145,9 +145,8 @@ export class ReservationControllerBase {
           },
         },
 
+        clientEmail: true,
         createdAt: true,
-        daysOfReservation: true,
-        emailOfUser: true,
         endReservation: true,
         id: true,
 
@@ -157,6 +156,7 @@ export class ReservationControllerBase {
           },
         },
 
+        startReservation: true,
         updatedAt: true,
       },
     });
@@ -205,9 +205,8 @@ export class ReservationControllerBase {
             },
           },
 
+          clientEmail: true,
           createdAt: true,
-          daysOfReservation: true,
-          emailOfUser: true,
           endReservation: true,
           id: true,
 
@@ -217,6 +216,7 @@ export class ReservationControllerBase {
             },
           },
 
+          startReservation: true,
           updatedAt: true,
         },
       });
@@ -252,9 +252,8 @@ export class ReservationControllerBase {
             },
           },
 
+          clientEmail: true,
           createdAt: true,
-          daysOfReservation: true,
-          emailOfUser: true,
           endReservation: true,
           id: true,
 
@@ -264,6 +263,7 @@ export class ReservationControllerBase {
             },
           },
 
+          startReservation: true,
           updatedAt: true,
         },
       });

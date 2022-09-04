@@ -12,7 +12,7 @@ https://docs.amplication.com/docs/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { Check } from "../../check/base/Check";
-import { ValidateNested, IsOptional, IsDate, IsString } from "class-validator";
+import { ValidateNested, IsOptional, IsString, IsDate } from "class-validator";
 import { Type } from "class-transformer";
 import { Apartment } from "../../apartment/base/Apartment";
 @ObjectType()
@@ -28,11 +28,11 @@ class Reservation {
 
   @ApiProperty({
     required: true,
+    type: String,
   })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  createdAt!: Date;
+  @IsString()
+  @Field(() => String)
+  clientEmail!: string;
 
   @ApiProperty({
     required: true,
@@ -40,18 +40,7 @@ class Reservation {
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
-  daysOfReservation!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  emailOfUser!: string | null;
+  createdAt!: Date;
 
   @ApiProperty({
     required: false,
@@ -79,6 +68,14 @@ class Reservation {
   @ValidateNested()
   @Type(() => Apartment)
   idApartment?: Apartment;
+
+  @ApiProperty({
+    required: true,
+  })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
+  startReservation!: Date;
 
   @ApiProperty({
     required: true,

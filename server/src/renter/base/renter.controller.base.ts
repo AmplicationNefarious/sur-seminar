@@ -21,6 +21,7 @@ import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import { RenterService } from "../renter.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
+import { Public } from "../../decorators/public.decorator";
 import { RenterCreateInput } from "./RenterCreateInput";
 import { RenterWhereInput } from "./RenterWhereInput";
 import { RenterWhereUniqueInput } from "./RenterWhereUniqueInput";
@@ -199,12 +200,7 @@ export class RenterControllerBase {
     }
   }
 
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @nestAccessControl.UseRoles({
-    resource: "Apartment",
-    action: "read",
-    possession: "any",
-  })
+  @Public()
   @common.Get("/:id/apartments")
   @ApiNestedQuery(ApartmentFindManyArgs)
   async findManyApartments(
@@ -221,6 +217,13 @@ export class RenterControllerBase {
         id: true,
         name: true,
         price: true,
+
+        renter: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
