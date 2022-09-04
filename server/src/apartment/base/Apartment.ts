@@ -19,7 +19,6 @@ import {
   ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { Renter } from "../../renter/base/Renter";
 import { Reservation } from "../../reservation/base/Reservation";
 @ObjectType()
 class Apartment {
@@ -73,15 +72,6 @@ class Apartment {
   @IsNumber()
   @Field(() => Number)
   price!: number;
-
-  @ApiProperty({
-    required: false,
-    type: () => Renter,
-  })
-  @ValidateNested()
-  @Type(() => Renter)
-  @IsOptional()
-  renter?: Renter | null;
 
   @ApiProperty({
     required: false,

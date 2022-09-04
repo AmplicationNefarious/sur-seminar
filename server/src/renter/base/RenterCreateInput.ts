@@ -11,23 +11,9 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApartmentCreateNestedManyWithoutRentersInput } from "./ApartmentCreateNestedManyWithoutRentersInput";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
-import { Type } from "class-transformer";
+import { IsString, IsOptional } from "class-validator";
 @InputType()
 class RenterCreateInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApartmentCreateNestedManyWithoutRentersInput,
-  })
-  @ValidateNested()
-  @Type(() => ApartmentCreateNestedManyWithoutRentersInput)
-  @IsOptional()
-  @Field(() => ApartmentCreateNestedManyWithoutRentersInput, {
-    nullable: true,
-  })
-  apartments?: ApartmentCreateNestedManyWithoutRentersInput;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -45,14 +31,6 @@ class RenterCreateInput {
   nameSurname!: string;
 
   @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  password!: string;
-
-  @ApiProperty({
     required: false,
     type: String,
   })
@@ -62,13 +40,5 @@ class RenterCreateInput {
     nullable: true,
   })
   phoneNumber?: string | null;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  username!: string;
 }
 export { RenterCreateInput };

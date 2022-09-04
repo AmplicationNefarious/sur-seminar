@@ -15,20 +15,16 @@ const CREATE_INPUT = {
   email: "exampleEmail",
   id: "exampleId",
   nameSurname: "exampleNameSurname",
-  password: "examplePassword",
   phoneNumber: "examplePhoneNumber",
   updatedAt: new Date(),
-  username: "exampleUsername",
 };
 const CREATE_RESULT = {
   createdAt: new Date(),
   email: "exampleEmail",
   id: "exampleId",
   nameSurname: "exampleNameSurname",
-  password: "examplePassword",
   phoneNumber: "examplePhoneNumber",
   updatedAt: new Date(),
-  username: "exampleUsername",
 };
 const FIND_MANY_RESULT = [
   {
@@ -36,10 +32,8 @@ const FIND_MANY_RESULT = [
     email: "exampleEmail",
     id: "exampleId",
     nameSurname: "exampleNameSurname",
-    password: "examplePassword",
     phoneNumber: "examplePhoneNumber",
     updatedAt: new Date(),
-    username: "exampleUsername",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -47,10 +41,8 @@ const FIND_ONE_RESULT = {
   email: "exampleEmail",
   id: "exampleId",
   nameSurname: "exampleNameSurname",
-  password: "examplePassword",
   phoneNumber: "examplePhoneNumber",
   updatedAt: new Date(),
-  username: "exampleUsername",
 };
 
 const service = {

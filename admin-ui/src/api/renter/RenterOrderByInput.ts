@@ -5,8 +5,6 @@ export type RenterOrderByInput = {
   email?: SortOrder;
   id?: SortOrder;
   nameSurname?: SortOrder;
-  password?: SortOrder;
   phoneNumber?: SortOrder;
   updatedAt?: SortOrder;
-  username?: SortOrder;
 };

@@ -11,25 +11,12 @@ https://docs.amplication.com/docs/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ApartmentListRelationFilter } from "../../apartment/base/ApartmentListRelationFilter";
-import { ValidateNested, IsOptional } from "class-validator";
-import { Type } from "class-transformer";
 import { StringFilter } from "../../util/StringFilter";
+import { Type } from "class-transformer";
+import { IsOptional } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 @InputType()
 class RenterWhereInput {
-  @ApiProperty({
-    required: false,
-    type: () => ApartmentListRelationFilter,
-  })
-  @ValidateNested()
-  @Type(() => ApartmentListRelationFilter)
-  @IsOptional()
-  @Field(() => ApartmentListRelationFilter, {
-    nullable: true,
-  })
-  apartments?: ApartmentListRelationFilter;
-
   @ApiProperty({
     required: false,
     type: StringFilter,
@@ -65,17 +52,6 @@ class RenterWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  password?: StringFilter;
-
-  @ApiProperty({
-    required: false,
     type: StringNullableFilter,
   })
   @Type(() => StringNullableFilter)
@@ -84,16 +60,5 @@ class RenterWhereInput {
     nullable: true,
   })
   phoneNumber?: StringNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  username?: StringFilter;
 }
 export { RenterWhereInput };
