@@ -1,4 +1,4 @@
-import { RenterCreateNestedManyWithoutApartmentsInput } from "./RenterCreateNestedManyWithoutApartmentsInput";
+import { RenterWhereUniqueInput } from "../renter/RenterWhereUniqueInput";
 import { ReservationCreateNestedManyWithoutApartmentsInput } from "./ReservationCreateNestedManyWithoutApartmentsInput";
 
 export type ApartmentCreateInput = {
@@ -6,6 +6,6 @@ export type ApartmentCreateInput = {
   description?: string | null;
   name: string;
   price: number;
-  renters?: RenterCreateNestedManyWithoutApartmentsInput;
+  renter?: RenterWhereUniqueInput | null;
   reservations?: ReservationCreateNestedManyWithoutApartmentsInput;
 };

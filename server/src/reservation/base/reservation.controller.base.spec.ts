@@ -11,37 +11,37 @@ import { ReservationService } from "../reservation.service";
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
 const CREATE_INPUT = {
+  clientEmail: "exampleClientEmail",
   createdAt: new Date(),
-  daysOfReservation: new Date(),
-  emailOfUser: "exampleEmailOfUser",
   endReservation: new Date(),
   id: "exampleId",
+  startReservation: new Date(),
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
+  clientEmail: "exampleClientEmail",
   createdAt: new Date(),
-  daysOfReservation: new Date(),
-  emailOfUser: "exampleEmailOfUser",
   endReservation: new Date(),
   id: "exampleId",
+  startReservation: new Date(),
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
   {
+    clientEmail: "exampleClientEmail",
     createdAt: new Date(),
-    daysOfReservation: new Date(),
-    emailOfUser: "exampleEmailOfUser",
     endReservation: new Date(),
     id: "exampleId",
+    startReservation: new Date(),
     updatedAt: new Date(),
   },
 ];
 const FIND_ONE_RESULT = {
+  clientEmail: "exampleClientEmail",
   createdAt: new Date(),
-  daysOfReservation: new Date(),
-  emailOfUser: "exampleEmailOfUser",
   endReservation: new Date(),
   id: "exampleId",
+  startReservation: new Date(),
   updatedAt: new Date(),
 };
 
@@ -109,8 +109,8 @@ describe("Reservation", () => {
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
-        daysOfReservation: CREATE_RESULT.daysOfReservation.toISOString(),
         endReservation: CREATE_RESULT.endReservation.toISOString(),
+        startReservation: CREATE_RESULT.startReservation.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
       });
   });
@@ -123,8 +123,8 @@ describe("Reservation", () => {
         {
           ...FIND_MANY_RESULT[0],
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
-          daysOfReservation: FIND_MANY_RESULT[0].daysOfReservation.toISOString(),
           endReservation: FIND_MANY_RESULT[0].endReservation.toISOString(),
+          startReservation: FIND_MANY_RESULT[0].startReservation.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
       ]);
@@ -148,8 +148,8 @@ describe("Reservation", () => {
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
-        daysOfReservation: FIND_ONE_RESULT.daysOfReservation.toISOString(),
         endReservation: FIND_ONE_RESULT.endReservation.toISOString(),
+        startReservation: FIND_ONE_RESULT.startReservation.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
       });
   });

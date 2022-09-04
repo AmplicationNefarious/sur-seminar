@@ -3,11 +3,11 @@ import { Apartment } from "../apartment/Apartment";
 
 export type Reservation = {
   check?: Check | null;
+  clientEmail: string;
   createdAt: Date;
-  daysOfReservation: Date;
-  emailOfUser: string | null;
   endReservation: Date | null;
   id: string;
   idApartment?: Apartment;
+  startReservation: Date;
   updatedAt: Date;
 };

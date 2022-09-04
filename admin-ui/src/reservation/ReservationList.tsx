@@ -24,18 +24,18 @@ export const ReservationList = (props: ListProps): React.ReactElement => {
         <ReferenceField label="Check" source="check.id" reference="Check">
           <TextField source={CHECK_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Client Email" source="clientEmail" />
         <DateField source="createdAt" label="Created At" />
-        <TextField label="StartReservation" source="daysOfReservation" />
-        <TextField label="EmailOfUser" source="emailOfUser" />
-        <TextField label="EndReservation" source="endReservation" />
+        <TextField label="End" source="endReservation" />
         <TextField label="ID" source="id" />
         <ReferenceField
-          label="ID_Apartment"
+          label="Apartment"
           source="apartment.id"
           reference="Apartment"
         >
           <TextField source={APARTMENT_TITLE_FIELD} />
         </ReferenceField>
+        <TextField label="Start" source="startReservation" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>

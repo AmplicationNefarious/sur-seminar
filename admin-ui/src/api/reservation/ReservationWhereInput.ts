@@ -1,15 +1,14 @@
 import { CheckWhereUniqueInput } from "../check/CheckWhereUniqueInput";
-import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { ApartmentWhereUniqueInput } from "../apartment/ApartmentWhereUniqueInput";
+import { DateTimeFilter } from "../../util/DateTimeFilter";
 
 export type ReservationWhereInput = {
   check?: CheckWhereUniqueInput;
-  daysOfReservation?: DateTimeFilter;
-  emailOfUser?: StringNullableFilter;
+  clientEmail?: StringFilter;
   endReservation?: DateTimeNullableFilter;
   id?: StringFilter;
   idApartment?: ApartmentWhereUniqueInput;
+  startReservation?: DateTimeFilter;
 };
