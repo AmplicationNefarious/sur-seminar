@@ -2,18 +2,6 @@
   {
     "role": "user",
     "resource": "User",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "User",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "User",
     "action": "update:any",
     "attributes": "*"
   },
@@ -33,12 +21,6 @@
     "role": "admin",
     "resource": "User",
     "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "User",
-    "action": "delete:any",
     "attributes": "*"
   },
   {
@@ -66,9 +48,27 @@
     "attributes": "*"
   },
   {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
     "role": "user",
     "resource": "Apartment",
     "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "admin",
+    "resource": "Apartment",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
+    "resource": "Apartment",
+    "action": "update:any",
     "attributes": "*"
   },
   {
@@ -78,21 +78,21 @@
     "attributes": "*"
   },
   {
-    "role": "user",
+    "role": "admin",
+    "resource": "Apartment",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "renter",
     "resource": "Apartment",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Reservation",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reservation",
-    "action": "create:any",
+    "resource": "Apartment",
+    "action": "delete:any",
     "attributes": "*"
   },
   {
@@ -102,19 +102,7 @@
     "attributes": "*"
   },
   {
-    "role": "user",
-    "resource": "Reservation",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
     "role": "renter",
-    "resource": "Reservation",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
     "resource": "Reservation",
     "action": "delete:any",
     "attributes": "*"
@@ -122,42 +110,6 @@
   {
     "role": "renter",
     "resource": "Reservation",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Reservation",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Check",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Check",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Check",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Check",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Check",
     "action": "read:any",
     "attributes": "*"
   },

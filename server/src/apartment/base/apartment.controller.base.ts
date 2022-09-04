@@ -50,15 +50,7 @@ export class ApartmentControllerBase {
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(@common.Body() data: ApartmentCreateInput): Promise<Apartment> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        renter: data.renter
-          ? {
-              connect: data.renter,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         address: true,
         createdAt: true,
@@ -66,13 +58,6 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
-
-        renter: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -94,13 +79,6 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
-
-        renter: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -123,13 +101,6 @@ export class ApartmentControllerBase {
         id: true,
         name: true,
         price: true,
-
-        renter: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -158,15 +129,7 @@ export class ApartmentControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          renter: data.renter
-            ? {
-                connect: data.renter,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           address: true,
           createdAt: true,
@@ -174,13 +137,6 @@ export class ApartmentControllerBase {
           id: true,
           name: true,
           price: true,
-
-          renter: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
         },
       });
@@ -216,13 +172,6 @@ export class ApartmentControllerBase {
           id: true,
           name: true,
           price: true,
-
-          renter: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
         },
       });

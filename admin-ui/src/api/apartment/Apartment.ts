@@ -1,4 +1,3 @@
-import { Renter } from "../renter/Renter";
 import { Reservation } from "../reservation/Reservation";
 
 export type Apartment = {
@@ -8,7 +7,6 @@ export type Apartment = {
   id: string;
   name: string;
   price: number;
-  renter?: Renter | null;
   reservations?: Array<Reservation>;
   updatedAt: Date;
 };

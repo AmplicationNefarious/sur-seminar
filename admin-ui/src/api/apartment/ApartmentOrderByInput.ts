@@ -7,6 +7,5 @@ export type ApartmentOrderByInput = {
   id?: SortOrder;
   name?: SortOrder;
   price?: SortOrder;
-  renterId?: SortOrder;
   updatedAt?: SortOrder;
 };
