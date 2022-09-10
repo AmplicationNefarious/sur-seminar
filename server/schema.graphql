@@ -226,19 +226,15 @@ type Renter {
   email: String!
   id: String!
   nameSurname: String!
-  password: String!
   phoneNumber: String
   updatedAt: DateTime!
-  username: String!
 }
 
 input RenterCreateInput {
   apartments: ApartmentCreateNestedManyWithoutRentersInput
   email: String!
   nameSurname: String!
-  password: String!
   phoneNumber: String
-  username: String!
 }
 
 input RenterOrderByInput {
@@ -246,19 +242,15 @@ input RenterOrderByInput {
   email: SortOrder
   id: SortOrder
   nameSurname: SortOrder
-  password: SortOrder
   phoneNumber: SortOrder
   updatedAt: SortOrder
-  username: SortOrder
 }
 
 input RenterUpdateInput {
   apartments: ApartmentUpdateManyWithoutRentersInput
   email: String
   nameSurname: String
-  password: String
   phoneNumber: String
-  username: String
 }
 
 input RenterWhereInput {
@@ -266,9 +258,7 @@ input RenterWhereInput {
   email: StringFilter
   id: StringFilter
   nameSurname: StringFilter
-  password: StringFilter
   phoneNumber: StringNullableFilter
-  username: StringFilter
 }
 
 input RenterWhereUniqueInput {
@@ -276,21 +266,21 @@ input RenterWhereUniqueInput {
 }
 
 type Reservation {
+  apartment: Apartment
   check: Check
   clientEmail: String!
   createdAt: DateTime!
   endReservation: DateTime
   id: String!
-  idApartment: Apartment
   startReservation: DateTime!
   updatedAt: DateTime!
 }
 
 input ReservationCreateInput {
+  apartment: ApartmentWhereUniqueInput
   check: CheckWhereUniqueInput
   clientEmail: String!
   endReservation: DateTime
-  idApartment: ApartmentWhereUniqueInput!
   startReservation: DateTime!
 }
 
@@ -305,21 +295,21 @@ input ReservationListRelationFilter {
 }
 
 input ReservationOrderByInput {
+  apartmentId: SortOrder
   checkId: SortOrder
   clientEmail: SortOrder
   createdAt: SortOrder
   endReservation: SortOrder
   id: SortOrder
-  idApartmentId: SortOrder
   startReservation: SortOrder
   updatedAt: SortOrder
 }
 
 input ReservationUpdateInput {
+  apartment: ApartmentWhereUniqueInput
   check: CheckWhereUniqueInput
   clientEmail: String
   endReservation: DateTime
-  idApartment: ApartmentWhereUniqueInput
   startReservation: DateTime
 }
 
@@ -330,11 +320,11 @@ input ReservationUpdateManyWithoutApartmentsInput {
 }
 
 input ReservationWhereInput {
+  apartment: ApartmentWhereUniqueInput
   check: CheckWhereUniqueInput
   clientEmail: StringFilter
   endReservation: DateTimeNullableFilter
   id: StringFilter
-  idApartment: ApartmentWhereUniqueInput
   startReservation: DateTimeFilter
 }
 
@@ -379,20 +369,14 @@ input StringNullableFilter {
 
 type User {
   createdAt: DateTime!
-  email: String!
   id: String!
-  nameSurname: String
-  phoneNumber: String
   roles: [String!]!
   updatedAt: DateTime!
   username: String!
 }
 
 input UserCreateInput {
-  email: String!
-  nameSurname: String
   password: String!
-  phoneNumber: String
   roles: [String!]!
   username: String!
 }
@@ -405,30 +389,21 @@ type UserInfo {
 
 input UserOrderByInput {
   createdAt: SortOrder
-  email: SortOrder
   id: SortOrder
-  nameSurname: SortOrder
   password: SortOrder
-  phoneNumber: SortOrder
   roles: SortOrder
   updatedAt: SortOrder
   username: SortOrder
 }
 
 input UserUpdateInput {
-  email: String
-  nameSurname: String
   password: String
-  phoneNumber: String
   roles: [String!]
   username: String
 }
 
 input UserWhereInput {
-  email: StringFilter
   id: StringFilter
-  nameSurname: StringNullableFilter
-  phoneNumber: StringNullableFilter
   username: StringFilter
 }
 
